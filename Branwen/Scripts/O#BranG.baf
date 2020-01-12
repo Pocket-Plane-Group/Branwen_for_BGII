@@ -1,0 +1,12 @@
+// Branwen's Grandmother appears after Gorion's Wraith calls upon her in dialogue and this cutscene plays:
+IF
+True()
+THEN
+RESPONSE #100
+CutSceneId(Player1)
+CreateVisualEffect("SPFLESHS",[1454.1398])
+Wait(1)
+CreateCreature("O#BranG",[1454.1398],14)
+Wait(1)
+ActionOverride("O#BranG",StartDialogueNoSet(Player1))
+END

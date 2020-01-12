@@ -1,0 +1,8 @@
+// Branwen's abduction, adding to Bodhi's script
+IF
+Global("O#BranVampire","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("Deactivate0801","AR0800",3)
+ForceSpell(Myself,DRYAD_TELEPORT)
+END

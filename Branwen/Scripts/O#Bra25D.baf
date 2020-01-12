@@ -1,0 +1,19 @@
+// This is Branwen's dream script for ToB. It means that all events and talks that should happen at rest are scripted here.
+// We have one lovetalk in O#Bra25J.d - after Balthazar is dead.
+IF
+InParty(Myself)
+Global("O#BranLastNight","GLOBAL",0)
+Global("O#BranRomanceActive","GLOBAL",2)
+Global("O#BranShutUp","GLOBAL",0)
+Dead("BALTH")
+!StateCheck(Player1,CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+THEN
+RESPONSE #100
+IncrementGlobal("O#BranLastNight","GLOBAL",1)
+PlaySong(0)
+PlaySound("O#BRAN")
+StartDialogueNoSet(Player1)
+END
+
+

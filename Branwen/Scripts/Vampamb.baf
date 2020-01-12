@@ -1,0 +1,32 @@
+// Branwen's abduction, Branwen's new script during the abduction. Note that there's another script for the vampire Branwen in Bodhi's crypt - it's not the same
+IF
+Global("O#CleanseVampire","AR1401",2)
+Global("O#BranVampire","GLOBAL",3)
+Name("O#Bran",Myself)
+AreaCheck("AR1401")
+THEN
+RESPONSE #100
+SetGlobal("O#BranVampire","GLOBAL",4)
+DialogInterrupt(TRUE)
+ChangeAIScript("O#BranS",OVERRIDE) // setting script back when restored via Amaunator's altar
+END
+
+IF
+Global("O#BranVampire","GLOBAL",1)
+Global("O#RomanceVampire","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("O#RomanceVampire","GLOBAL",1)
+Continue()
+END
+
+IF
+Global("O#BranVampire","GLOBAL",1)
+Global("O#RomanceVampireTeleport","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("O#RomanceVampireTeleport","GLOBAL",1)
+CreateVisualEffectObject("SPDIMNDR",Myself)   // when Branwen's abducted by Bodhi, she teleports
+Wait(2)
+DestroySelf()
+END

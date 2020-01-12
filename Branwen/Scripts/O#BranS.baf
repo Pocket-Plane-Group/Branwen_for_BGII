@@ -1,0 +1,479 @@
+// This is Branwen's main script. Each block does one unique action.
+
+// For example, the first block: if you press K key when Branwen is selected, then script O#BranF.baf will run and assign Branwen a correct soundset again.
+IF
+HotKey(K)
+THEN
+RESPONSE #100
+StartCutSceneMode()
+StartCutScene("O#BranF")
+END
+
+// This is where Branwen's friendship talks start. O#BranShutUp is a variable you can set in player-initiated dialogue by telling Branwen you'd like some quiet, or asking her to talk to you again.
+// So, when Branwen joins your party, a timer is set for one hour, and the first talk is preparing to run.
+// ATTENTION: in all scripts InParty(Myself) should go first or right after Global() conditions if present. It means NPC is present and not dead. If your NPC is dead and this condition is not present, your game might crash.
+IF 
+InParty(Myself)
+Global("O#BranShutUp","GLOBAL",0)	 // O#BranShutUp is used in player-initiated dialogue. Look it up.
+Global("O#BranTalk","GLOBAL",0)
+THEN
+RESPONSE #100
+RealSetGlobalTimer("O#BranTimer","GLOBAL",3600)
+SetGlobal("O#BranTalk","GLOBAL",1)       // Each block must run only once, which is also why we set O#BranTalk to 1 - it means the same set of conditions will never be repeated again
+END
+
+// And this is how we initiate romance:
+IF 
+InParty(Myself)
+Gender(Player1,MALE)
+OR(4)				// OR(4) means that four lines after OR() are a part of this OR() command.
+Race(Player1,HUMAN)
+Race(Player1,ELF)
+Race(Player1,HALF_ELF)
+Race(Player1,HALFORC)
+Global("O#BranLovetalk","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("O#BranLovetalk","GLOBAL",1)
+SetGlobal("O#BranRomanceActive","GLOBAL",1)
+END
+
+// This is a huge block. What does it do? It runs FIFTEEN talks at once! 
+// (If it scares you, go below and see some simpler blocks, like Branwen's talk for Chapter 4).
+// Let's see how it's done:
+
+IF
+InParty(Myself)
+RealGlobalTimerExpired("O#BranTimer","GLOBAL")
+Global("O#BranShutUp","GLOBAL",0)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID)    // CamDawg's condition, means that everyone can talk and is not charmed, confused, silenced and so on
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)                          // These two lines mean "no battle"
+!See([ENEMY])
+!AreaType(DUNGEON)			  // No talks in dungeons, right?
+OR(15)                                    // Be careful here: 15 must mean EXACTLY 15 lines included in the condition. The 16th line will not be included!
+Global("O#BranTalk","GLOBAL",1)
+Global("O#BranTalk","GLOBAL",3)
+Global("O#BranTalk","GLOBAL",5)
+Global("O#BranTalk","GLOBAL",7)
+Global("O#BranTalk","GLOBAL",9)
+Global("O#BranTalk","GLOBAL",11)
+Global("O#BranTalk","GLOBAL",13)
+Global("O#BranTalk","GLOBAL",15)
+Global("O#BranTalk","GLOBAL",17)
+Global("O#BranTalk","GLOBAL",19)
+Global("O#BranTalk","GLOBAL",21)
+Global("O#BranTalk","GLOBAL",23)
+Global("O#BranTalk","GLOBAL",25)
+Global("O#BranTalk","GLOBAL",27)
+Global("O#BranTalk","GLOBAL",29)
+THEN
+RESPONSE #100
+IncrementGlobal("O#BranTalk","GLOBAL",1)
+END
+
+// So, if timer expired, everybody's able to talk and there's no battle, we increase the variable by one. Now our O#BranTalk variable is at 2, or 4, or 6... or 20, or 30.
+// EXACTLY like the condition in the beginning of each talk, right?
+// Now all that's left is making Branwen talk to you. We could just add StartDialogueNoSet(Player1) into the last block, but the engine is tricky: if you give a command when Branwen's about to talk, she may miss her dialogue!
+// So we add another block. Actually, two blocks: one for the romanced Branwen and one for the non-romanced, because I want to play the music only if Branwen is romanced.
+IF
+InParty(Myself)
+Global("O#BranShutUp","GLOBAL",0)
+!Global("O#BranRomanceActive","GLOBAL",1)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID) 
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+!AreaType(DUNGEON)
+OR(15)                                    // Again, OR(15) means that fifteen lines below are a part of OR() command
+Global("O#BranTalk","GLOBAL",2)
+Global("O#BranTalk","GLOBAL",4)
+Global("O#BranTalk","GLOBAL",6)
+Global("O#BranTalk","GLOBAL",8)
+Global("O#BranTalk","GLOBAL",10)
+Global("O#BranTalk","GLOBAL",12)
+Global("O#BranTalk","GLOBAL",14)
+Global("O#BranTalk","GLOBAL",16)
+Global("O#BranTalk","GLOBAL",18)
+Global("O#BranTalk","GLOBAL",20)
+Global("O#BranTalk","GLOBAL",22)
+Global("O#BranTalk","GLOBAL",24)
+Global("O#BranTalk","GLOBAL",26)
+Global("O#BranTalk","GLOBAL",28)
+Global("O#BranTalk","GLOBAL",30)
+THEN
+RESPONSE #100
+StartDialogueNoSet(Player1)
+END
+
+// Same block, romanced version(with music)
+IF
+InParty(Myself)
+Global("O#BranShutUp","GLOBAL",0)
+Global("O#BranRomanceActive","GLOBAL",1)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID) 
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+!AreaType(DUNGEON)
+OR(15)                                    // Again, OR(15) means that fifteen lines below are a part of OR() command
+Global("O#BranTalk","GLOBAL",2)
+Global("O#BranTalk","GLOBAL",4)
+Global("O#BranTalk","GLOBAL",6)
+Global("O#BranTalk","GLOBAL",8)
+Global("O#BranTalk","GLOBAL",10)
+Global("O#BranTalk","GLOBAL",12)
+Global("O#BranTalk","GLOBAL",14)
+Global("O#BranTalk","GLOBAL",16)
+Global("O#BranTalk","GLOBAL",18)
+Global("O#BranTalk","GLOBAL",20)
+Global("O#BranTalk","GLOBAL",22)
+Global("O#BranTalk","GLOBAL",24)
+Global("O#BranTalk","GLOBAL",26)
+Global("O#BranTalk","GLOBAL",28)
+Global("O#BranTalk","GLOBAL",30)
+THEN
+RESPONSE #100
+PlaySong(0)
+PlaySound("O#BRAN")                     // You can play your song here. Just create a wav file(for example, AAAA.wav, but it really must be prefixed with your prefix), and place its name here.
+StartDialogueNoSet(Player1)
+END
+
+// In short, the long block you have just read means: if we're not fighting, are not in a dungeon and everyone's okay, Branwen will talk to me whenever her O#BranTalk value hits 2,4,6,8,10,12...30.
+
+// Now let's check shorter and simple blocks, for one talk only. 
+// Branwen has talks for Chapter 4,5 and 7.
+IF
+InParty(Myself)
+Global("O#BranShutUp","GLOBAL",0)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID) 
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+Global("Chapter","GLOBAL",%bg2_chapter_4%)            // that's the actual condition: Chapter=4. No dungeon check, since we're in Brynnlaw
+Global("O#BranChapter4","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("O#BranChapter4","GLOBAL",1)
+END
+
+IF
+InParty(Myself)
+Global("O#BranShutUp","GLOBAL",0)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID) 
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+Global("Chapter","GLOBAL",%bg2_chapter_5%)           // No dungeon check, since we're in the Underdark. Which is a big dungeon.
+Global("O#BranChapter5","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("O#BranChapter5","GLOBAL",1)
+RealSetGlobalTimer("O#BranChapter5Timer","GLOBAL",3600)    // setting a timer for another talk
+END
+
+IF
+InParty(Myself)
+Global("O#BranShutUp","GLOBAL",0)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID) 
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+Global("Chapter","GLOBAL",%bg2_chapter_7%)           // No dungeon check, since we're in Suldanessellar.
+Global("O#BranChapter7","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("O#BranChapter7","GLOBAL",1)
+END
+
+// So, if we're in Chapter 4, for example, then O#BranChapter4=1 and a talk from O#BranJ.d will run.
+// Again, music plays if Branwen is romanced, doesn't play otherwise.
+IF
+InParty(Myself)
+Global("O#BranShutUp","GLOBAL",0)
+OR(2)
+Global("O#BranRomanceActive","GLOBAL",1)
+Global("O#BranRomanceActive","GLOBAL",2)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID) 
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+OR(3)
+Global("O#BranChapter4","GLOBAL",1)
+Global("O#BranChapter5","GLOBAL",1)
+Global("O#BranChapter7","GLOBAL",1)
+THEN
+RESPONSE #100
+PlaySong(0)
+PlaySound("O#BRAN")
+StartDialogueNoSet(Player1)
+END
+
+// Same block, non-romanced version(without music)
+IF
+InParty(Myself)
+Global("O#BranShutUp","GLOBAL",0)
+!Global("O#BranRomanceActive","GLOBAL",1)
+!Global("O#BranRomanceActive","GLOBAL",2)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID) 
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+OR(3)
+Global("O#BranChapter4","GLOBAL",1)
+Global("O#BranChapter5","GLOBAL",1)
+Global("O#BranChapter7","GLOBAL",1)
+THEN
+RESPONSE #100
+StartDialogueNoSet(Player1)
+END
+
+// Extra talk: Sahuagin city
+IF
+InParty(Myself)
+Global("O#BranShutUp","GLOBAL",0)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID) 
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+AreaCheck("AR2300")           // Sahuagin City
+Global("O#BranTalkSahuagin","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("O#BranTalkSahuagin","GLOBAL",1)
+END
+
+// Extra talk: an hour after Chapter 5
+IF
+InParty(Myself)
+Global("O#BranShutUp","GLOBAL",0)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID) 
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+RealGlobalTimerExpired("O#BranChapter5Timer","GLOBAL") // Timer from Chapter 5 block expired
+Global("O#BranTalkSoul","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("O#BranTalkSoul","GLOBAL",1)
+END
+
+// Running extra talks. Romance - with music, no romance - without music.
+IF
+InParty(Myself)
+Global("O#BranShutUp","GLOBAL",0)
+OR(2)
+Global("O#BranRomanceActive","GLOBAL",1)
+Global("O#BranRomanceActive","GLOBAL",2)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID) 
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+OR(2)
+Global("O#BranTalkSoul","GLOBAL",1)
+Global("O#BranTalkSahuagin","GLOBAL",1)
+THEN
+RESPONSE #100
+PlaySong(0)
+PlaySound("O#BRAN")
+StartDialogueNoSet(Player1)
+END
+
+IF
+InParty(Myself)
+Global("O#BranShutUp","GLOBAL",0)
+!Global("O#BranRomanceActive","GLOBAL",1)
+!Global("O#BranRomanceActive","GLOBAL",2)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID) 
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+OR(2)
+Global("O#BranTalkSoul","GLOBAL",1)
+Global("O#BranTalkSahuagin","GLOBAL",1)
+THEN
+RESPONSE #100
+StartDialogueNoSet(Player1)
+END
+
+// Branwen's 3rd lovetalk after rest
+IF
+InParty(Myself)
+Global("O#BranLovetalk","GLOBAL",5)
+PartyRested()
+Global("O#BranRomanceActive","GLOBAL",2)
+Global("O#BranShutUp","GLOBAL",0)
+!StateCheck(Player1,CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+THEN
+RESPONSE #100
+IncrementGlobal("O#BranLovetalk","GLOBAL",1)
+END
+
+IF
+InParty(Myself)
+Global("O#BranLovetalk","GLOBAL",6)
+See(Player1)
+Global("O#BranRomanceActive","GLOBAL",2)
+Global("O#BranShutUp","GLOBAL",0)
+!StateCheck(Player1,CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+THEN
+RESPONSE #100
+StartDialogueNoSet(Player1)  // No music here, because music from the previous lovetalk is probably still playing
+END
+
+// Why do we run each talk in two blocks? Why do we first set a variable and then run a block with StartDialogueNoSet? Well, there's a tutorial I wrote for that, How to make your banters run when you want them to. But short answer is: you will miss lovetalks if you give a command to your follower. You will miss lovetalks if your computer is too fast and you party's on the move as your follower wants to talk. It doesn't happen often, but when it does, it's frustrating. Hence, this "division" of blocks.
+
+// Branwen's 4th lovetalk, an hour after the last one:
+IF
+InParty(Myself)
+Global("O#BranLovetalk","GLOBAL",7)
+RealGlobalTimerExpired("O#BranLoveTimer","GLOBAL")
+Global("O#BranRomanceActive","GLOBAL",2)
+Global("O#BranShutUp","GLOBAL",0)
+!StateCheck(Player1,CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+THEN
+RESPONSE #100
+IncrementGlobal("O#BranLovetalk","GLOBAL",1)
+END
+
+IF
+InParty(Myself)
+Global("O#BranLovetalk","GLOBAL",8)
+See(Player1)
+Global("O#BranRomanceActive","GLOBAL",2)
+Global("O#BranShutUp","GLOBAL",0)
+!StateCheck(Player1,CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+THEN
+RESPONSE #100
+PlaySong(0)
+PlaySound("O#BRAN")
+StartDialogueNoSet(Player1)
+END
+
+// What else are we missing? Romance!
+// If Aerie or Viconia or Jaheira love PC, Branwen should surrender.
+IF 
+OR(3)
+Global("AerieRomanceActive","GLOBAL",2)
+Global("JaheiraRomanceActive","GLOBAL",2)
+Global("ViconiaRomanceActive","GLOBAL",2)
+OR(2)
+Global("O#BranRomanceActive","GLOBAL",1)
+Global("O#BranRomanceActive","GLOBAL",2)
+Global("O#BranAnotherRomanceWon","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("O#BranRomanceActive","GLOBAL",3)
+SetGlobal("O#BranAnotherRomanceWon","GLOBAL",1)
+END
+
+// And if Branwen's romance is at 2, Aerie, Viconia and Jaheira lose.
+IF 
+Global("O#BranRomanceActive","GLOBAL",2)
+Global("AerieRomanceActive","GLOBAL",1)
+Global("O#BranAerieRomanceLost","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("AerieRomanceActive","GLOBAL",3)
+SetGlobal("O#BranAerieRomanceLost","GLOBAL",1)
+END
+
+IF 
+Global("O#BranRomanceActive","GLOBAL",2)
+Global("JaheiraRomanceActive","GLOBAL",1)
+Global("O#BranJaheiraRomanceLost","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("JaheiraRomanceActive","GLOBAL",3)
+SetGlobal("O#BranJaheiraRomanceLost","GLOBAL",1)
+END
+
+IF 
+Global("O#BranRomanceActive","GLOBAL",2)
+Global("ViconiaRomanceActive","GLOBAL",1)
+Global("O#BranViconiaRomanceLost","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("ViconiaRomanceActive","GLOBAL",3)
+SetGlobal("O#BranViconiaRomanceLost","GLOBAL",1)
+END
+
+// Branwen is romanceable, and she is going to initiate flirts!
+// The blocks seem a bit heavy, but if you read them line by line, you'll be all right.
+
+// Flirts initiate...
+IF
+InParty(Myself)
+Global("O#BranShutUp","GLOBAL",0)
+GlobalGT("O#BranTalk","GLOBAL",8)               // Flirts only start after Branwen's fourth talk
+GlobalGT("O#BranLovetalk","GLOBAL",2)           // Flirts only start after Branwen's first lovetalk
+OR(2)
+Global("O#BranRomanceActive","GLOBAL",1)
+Global("O#BranRomanceActive","GLOBAL",2)
+Global("O#BranFlirtsStart","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("O#BranFlirtsStart","GLOBAL",1)      
+RealSetGlobalTimer("O#BranFlirtTimer","GLOBAL",300)
+END
+
+// Ready for flirting!
+IF
+InParty(Myself)
+RealGlobalTimerExpired("O#BranFlirtTimer","GLOBAL")
+Global("O#BranShutUp","GLOBAL",0)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+!StateCheck(Player1,CD_STATE_NOTVALID)
+OR(2)
+Global("O#BranRomanceActive","GLOBAL",1)
+Global("O#BranRomanceActive","GLOBAL",2)
+See(Player1)
+CombatCounter(0)
+!See([ENEMY])
+!Global("Chapter","GLOBAL",%bg2_chapter_5%)                   // No flirting in the Underdark.
+Global("O#BranFlirt","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("O#BranFlirt","GLOBAL",1)             
+END
+
+// Flirting begins!
+IF
+InParty(Myself)
+Global("O#BranFlirt","GLOBAL",1)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+!StateCheck(Player1,CD_STATE_NOTVALID)
+See(Player1)
+THEN
+RESPONSE #100
+StartDialogueNoSet(Player1)
+END
+
+// Note that there are two dialogue blocks for Branwen-initiated flirts in O#BranJ.d - for O#BranRomanceActive=1 and for O#BranRomanceActive=2.
+
+// If Branwen becomes a vampire, here's her post-vampire dialogue:
+IF
+Global("O#BranVampire","GLOBAL",4)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+THEN
+RESPONSE #100
+StartDialogueNoSet(Player1)
+END

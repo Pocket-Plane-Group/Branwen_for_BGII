@@ -1,0 +1,57 @@
+// A script to "fix" Branwen's name and soundset, if it suddenly goes wrong. This is what happens when you select Branwen and press K(the script block about pressing K is in Branwen/Scripts/O#BranS.baf).
+// This is going to be boring, but you got to take all your soundset lines from your Setup-MyMod.tp2 and copy them here like I just did.
+
+// There is another way, if you want it. It's called traification. Download Coran NPC from http://www.pocketplane.net/coran and check his O#CoranF.baf and Setup-Coran.tra. You'll have to add LANGUAGE lines to your Setup-MyMod.tp2.
+// TRA tutorials are available in Weidu's README, as well.
+
+IF
+True()
+THEN
+RESPONSE #100
+CutSceneId("O#Bran")
+SetName(~Branwen~)
+SetPlayerSound(Myself,~By the ice breath of Auril! 'Tis good to see new faces and taste freedom again.~ [o#bran01],INITIAL_MEETING)
+SetPlayerSound(Myself,~Tempus, forgive my cowardice.~ [o#bran02],MORALE)
+SetPlayerSound(Myself,~I am proud to stand among such strong warriors.~ [o#bran04],HAPPY)
+SetPlayerSound(Myself,~Our actions are not those of warrior born.~ [o#bran05],UNHAPPY_ANNOYED)
+SetPlayerSound(Myself,~What sort of craven cowards are we?~ [o#bran06],UNHAPPY_SERIOUS)
+SetPlayerSound(Myself,~I can no longer honorably work with such as you.~ [o#bran07],UNHAPPY_BREAKING_POINT)
+SetPlayerSound(Myself,~I have always dreamt of leading such a worthy band.~ [o#bran08],LEADER)
+SetPlayerSound(Myself,~I'm tired.~ [o#bran09],TIRED)
+SetPlayerSound(Myself,~Damn the icicles of Auril. I'm BORED.~ [o#bran10],BORED)
+SetPlayerSound(Myself,~Tempus! Give us victory!~ [o#bran03],BATTLE_CRY1)
+SetPlayerSound(Myself,~Tempus! Give us victory!~ [o#bran03],BATTLE_CRY2)
+SetPlayerSound(Myself,~Tempus! Give us victory!~ [o#bran03],BATTLE_CRY3)
+SetPlayerSound(Myself,~Tempus! Give us victory!~ [o#bran03],BATTLE_CRY4)
+SetPlayerSound(Myself,~Tempus! Give us victory!~ [o#bran03],BATTLE_CRY5)
+SetPlayerSound(Myself,~~ [o#bran38],DAMAGE)
+SetPlayerSound(Myself,~~ [o#bran39],DYING)  
+SetPlayerSound(Myself,~'Tis but a flesh wound.~ [o#bran11],HURT)
+SetPlayerSound(Myself,~I am always at ease in the forest. It reminds me of home.~,AREA_FOREST)
+SetPlayerSound(Myself,~By Tempus, I love the big city!~,AREA_CITY)
+SetPlayerSound(Myself,~Danger is about. Be wary, friends.~,AREA_DUNGEON)
+SetPlayerSound(Myself,~Ah, I love traveling in fair weather.~,AREA_DAY)
+SetPlayerSound(Myself,~I can't see a thing. Are we craven thieves that we do not sleep?~,AREA_NIGHT)
+SetPlayerSound(Myself,~By Tempus' shield.~ [o#bran17],SELECT_COMMON1)
+SetPlayerSound(Myself,~What is your command?~ [o#bran18],SELECT_COMMON2)
+SetPlayerSound(Myself,~Hello?~ [o#bran19],SELECT_COMMON3)
+SetPlayerSound(Myself,~By Tempus' shield.~ [o#bran17],SELECT_COMMON4)
+SetPlayerSound(Myself,~What is your command?~ [o#bran18],SELECT_COMMON5)
+SetPlayerSound(Myself,~Hello?~ [o#bran19],SELECT_COMMON6)
+SetPlayerSound(Myself,~'Tis a fine day to die.~ [o#bran20],SELECT_ACTION1)
+SetPlayerSound(Myself,~If Tempus wills it.~ [o#bran21],SELECT_ACTION2)
+SetPlayerSound(Myself,~By Valkur's mighty blade.~ [o#bran22],SELECT_ACTION3)
+SetPlayerSound(Myself,~'Tis better to die on your feet, than live on your knees.~ [o#bran23],SELECT_ACTION4)
+SetPlayerSound(Myself,~May Auril bestow the frost kiss upon our enemies.~ [o#bran24],SELECT_ACTION5)
+SetPlayerSound(Myself,~By Valkur's strapping buttocks.~ [o#bran25] ,SELECT_ACTION6)
+SetPlayerSound(Myself,~A god's favor is fickle, at best.~ [o#bran26],SELECT_ACTION7)
+SetPlayerSound(Myself,~To die in battle is the most glorious death of all.~ [o#bran40],SELECT_RARE1)
+SetPlayerSound(Myself,~Tempus would guide your wayward soul, if you let him.~ [o#bran30],SELECT_RARE2)
+SetPlayerSound(Myself,~Tempus!~,CRITICAL_HIT)
+SetPlayerSound(Myself,~Argh!~,CRITICAL_MISS)
+SetPlayerSound(Myself,~Another weapon! Now!~,TARGET_IMMUNE)
+SetPlayerSound(Myself,~I can carry no more. I had to drop it.~,INVENTORY_FULL)
+SetPlayerSound(Myself,~My spell!~,SPELL_DISRUPTED)
+SetPlayerSound(Myself,~When asked about her past, BRANWEN reveals that she left her home of Seawolf in the Norheim isles at an early age. She was apparently reviled by her own people for wanting to become a priest, a station reserved exclusively for the men of the village. She harbors no resentment, realizing that her faith must face such tests or be worthless. She traveled the coast, offering her services to local militias, and eventually came into the employ of an adventuring troup in the Nashkel area. Branwen had no idea that the group was participating in banditry, however, and on their first raid she balked at attacking a caravan of unarmed merchants. She rebelled, and a mage named Tranzig turned her to stone in the ensuing fight. Despite the unfavorable outcome, Branwen feels that Tempus views her actions approvingly. To attack those that are unarmed is the basest of villainy.~,EXISTANCE5)
+EndCutSceneMode()
+END

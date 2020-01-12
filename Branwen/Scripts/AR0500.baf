@@ -1,0 +1,64 @@
+// This is the new block for the Bridge District area, where Branwen appears.
+// The list of areas for the game is here: http://iesdp.gibberlings3.net/appendices/area_lists/bg2aref.htm
+// It's pretty simple: if variable is 0, spawn Branwen and set variable at 1. We don't need ten Branwens, right? Or maybe we do.
+// Don't forget Continue() at the end. It's needed when you add to the top(EXTEND_TOP in Setup-Branwen.tp2) of the script. 
+
+IF
+Global("O#BranSpawn","GLOBAL",0)
+THEN
+RESPONSE #100
+CreateCreature("O#Bran",[4053.255],13)  // To choose your own coordinates, choose a spot in the game and press CTRL-X
+SetGlobal("O#BranSpawn","GLOBAL",1)
+Continue()
+END
+
+// These blocks are adding experience to Branwen - only once, when she's in party. It's also possible to add these blocks to Branwen's script O#BranS.baf, if you prefer.
+// When Branwen joins, if PC's experience is less, than 280000, then Branwen's experience will be at 161000.
+// For PC between 280001 and 600000 points of experience, Branwen's experience is going to become 400000.
+// For PC between 600001 and 1000000 points of experience, Branwen's experience is going to become 800000.
+// For PC with more than 1000000 points of experience, Branwen's experience is going to become 1200000.
+
+IF
+InParty("O#Bran")
+Global("O#BranExperienceSet","GLOBAL",0)
+XPLT(Player1,280001)
+THEN
+RESPONSE #100
+SetGlobal("O#BranExperienceSet","GLOBAL",1)
+Continue()
+END
+
+IF
+InParty("O#Bran")
+Global("O#BranExperienceSet","GLOBAL",0)
+XPGT(Player1,280000)
+XPLT(Player1,600001)
+THEN
+RESPONSE #100
+SetGlobal("O#BranExperienceSet","GLOBAL",1)
+AddXPObject("O#Bran",239000)
+Continue()
+END
+
+IF
+InParty("O#Bran")
+Global("O#BranExperienceSet","GLOBAL",0)
+XPGT(Player1,600000)
+XPLT(Player1,1000001)
+THEN
+RESPONSE #100
+SetGlobal("O#BranExperienceSet","GLOBAL",1)
+AddXPObject("O#Bran",639000)
+Continue()
+END
+
+IF
+InParty("O#Bran")
+Global("O#BranExperienceSet","GLOBAL",0)
+XPGT(Player1,1000000)
+THEN
+RESPONSE #100
+SetGlobal("O#BranExperienceSet","GLOBAL",1)
+AddXPObject("O#Bran",1039000)
+Continue()
+END

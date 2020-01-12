@@ -1,0 +1,40 @@
+// Branwen's abduction, vampire Branwen's script
+IF
+Global("C6BodhiFight","AR0809",1)
+Allegiance(Myself,NEUTRAL)
+THEN
+RESPONSE #100
+Enemy()
+END
+
+IF
+Die()
+THEN
+RESPONSE #100
+SetGlobal("O#BranVampire","GLOBAL",3)
+DropInventory()
+DestroySelf()
+END
+
+IF
+See([PC])
+Delay(12)
+Allegiance(Myself,ENEMY)
+THEN
+RESPONSE #100
+ReallyForceSpellDead([PC],VAMPIRE_DOMINATION)
+END
+
+IF
+See(NearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+AttackReevaluate(NearestEnemyOf(Myself),30)
+END
+
+IF
+AttackedBy([ANYONE],DEFAULT)
+THEN
+RESPONSE #100
+Attack(LastAttackerOf(Myself))
+END

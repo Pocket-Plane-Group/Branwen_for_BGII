@@ -1,0 +1,26 @@
+// Branwen's abduction, Amanautor's altar. Contains("O#BranB") means that there's Branwen's body inside.
+IF
+Contains("O#BranB",Myself)
+Global("O#CleanseVampire","AR1401",0)
+THEN
+RESPONSE #100
+SetGlobal("O#CleanseVampire","AR1401",1)
+END
+
+IF
+Contains("O#BranB",Myself)
+Contains("MISCBP",Myself)   // Bodhi's heart
+THEN
+RESPONSE #100
+SetInterrupt(FALSE) // We don't want this to be interrupted
+SetGlobal("O#CleanseVampire","AR1401",2)
+DestroyItem("O#BranB")      // the body mysteriously disappears
+DestroyItem("MISCBP")
+CreateVisualEffect("SPMETSW2",[2592.1701]) // some pretty visual effects
+CreateVisualEffect("SPMETSW2",[2645.1742])
+Wait(1)
+CreateVisualEffect("SPFLESHS",[2565.1677])
+Wait(1)
+MoveGlobal("AR1401","O#Bran",[2565.1677])  // And here's Branwen!
+SetInterrupt(TRUE)
+END

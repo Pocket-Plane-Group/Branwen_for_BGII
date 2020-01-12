@@ -1,0 +1,334 @@
+// This is Branwen NPC, created to help other NPC modders. If you just want to play, close this file and run Setup-Branwen.exe :)
+
+// Okay, let's begin. Note these two slashes. These mean "commentary". Weidu will not compile this. 
+// There's lots of commentary here. Just remember, it's not all code. It's just notes to help you code quicker and better.
+/* Weidu will not compile this, either. This is commentary, too. The difference is, two slashes can only comment one line, whereas this way you can comment out entire paragraphs. */
+
+// What is Weidu? Let's say it's an exe file I renamed as Setup-Branwen.exe. Now, *this* file, Branwen.tp2, is a list of commands I'm giving Weidu. They will execute when I run Setup-Branwen.exe.
+
+// BACKUP is necessary. When you install the mod, if you add to Anomen's dialogue, his backup dialogue will be in Branwen/Backup.
+
+BACKUP ~Branwen/Backup~ 
+
+AUTHOR ~Kulyok at http://forums.pocketplane.net~ // If the player gets an installation error, he'll know where to post his bug reports
+
+VERSION ~v4~  // This is not necessary, but recommended. A version number will be reflected in your Weidu.log. This way you will know which version a player with a bug report has installed. V4, v1alpha, v1.23 will work too.
+
+//you can put a readme call here. This will give the standard "Would you like to display the readme? [Y]es [N]o" question at the beginning of the install.
+README ~Branwen/Readme-Branwen.txt~
+
+AUTO_TRA ~Branwen/%s~ // This is translation support. It means that your mdo will eventually have directories like MyMod/French, MyMod/Italian and MyMod/Polish, and this line will tell the compiler where to look.
+
+/* next comes the definition of the journal numbers so EET's continuous journal system works, too */
+ALWAYS
+  ACTION_IF NOT VARIABLE_IS_SET bg2_chapter BEGIN
+    ACTION_IF GAME_IS ~eet~ BEGIN
+      OUTER_SET bg2_chapter = 12 // EET uses continuous chapter numbering from BG1 through TOB and this starts at "12" in BGII
+    END ELSE BEGIN
+      OUTER_SET bg2_chapter = 0 // all other game types (BGII(:EE), BGT) restart chapter numbering in SOA
+    END
+    OUTER_FOR (i=1; i<=10; i=i+1) BEGIN
+      OUTER_SET bg2_chapter = bg2_chapter + 1
+      OUTER_SPRINT name_source ~bg2_chapter_%i%~
+      OUTER_SET EVAL ~%name_source%~ = bg2_chapter
+    END
+  END
+END
+
+LANGUAGE ~English~ ~English~ ~Branwen/English/Setup-Branwen.tra~ // This is an example line for English language. If you want, you can also use Translations/English folder
+//The first entry is the name of the language displayed upon install. The second entry is the name of the folder the language files are in.
+//The path given is the one to all tra-files needed for installation (can be more than one, just list them one after the other in tildas (~)
+/*
+Small addition by jastey (same as in the readme):
+Please note: for BGII:EE and EET, if you want to create a mod that uses any other letters or symbols than the latin (english) alphabet, you need to provide the texts in UTF-8 (without BOM) format, whereas the original game needs them in ANSI. So in case you do, you'll need to get familiar with using d/tra-pairs in your mod ("traify-ing" your mod) and using HANDLE_CHARSETS + iconv.exe for text transformation upon install. 
+Branwen NPC MOD for Baldur's Gate II does not contain this, one reason being that it was originally written before the EE was available, but we still think it's a good first start and if you reached the level of this mod with yours, then your modding skills will be good enough to go the step to unsing weidu --traify without problems! -jastey
+*/
+
+BEGIN ~Branwen BG2 NPC mod for players and modders~ // This is the name of your mod.
+
+// These two lines were created by CamDawg. It's a new state that checks if NPC is able to talk. USE this in your mod. See the dialogue for details.
+APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~
+UNLESS ~CD_STATE_NOTVALID~
+
+COPY ~Branwen/Audio~ ~override~ // All Branwen's audio files are in the game now, and we'll hear them when she talks.
+
+// I am going to use my prefix now. For the purposes of this mod, it is going to be O#. DON'T USE IT, REGISTER YOUR OWN!
+// Go here: http://forums.blackwyrmlair.net/index.php?showtopic=113 - the list of prefixes is in the first post of the thread. Use it in ALL your files and ALL variables.
+
+// Remember that all your filenames should not be longer than 8 symbols. Hence I often use O#Bran, and not O#Branwen(9 symbols). 
+// You can use long character's names in variables, if you want. But I use variable names like O#BranSomething instead of O#BranwenSomething, so it's easier for you to mass-replace(read below).
+
+// HOW TO DO A QUICK MASS-REPLACE WHEN YOU'VE GOT YOUR OWN PREFIX?
+
+// Imagine you have an NPC called Anna, and your prefix is BB(and, yes, this prefix is taken, too, it's just hypothetical).
+
+// To use my code for your NPC, replace all o#bran with bbanna(if you want it to be case-sensitive, then o#bran with bbanna, O#Bran with BBAnna and O#BRAN with BBANNA).
+// Exceptions are ToB files(with 25's in it), where you have to replace o#bran with bbanna, and THEN o#bra with bbann(files can be only eight symbols long, so I have to use O#BBRA25.d, not O#BBRAN25.d).
+// Naturally, make backups before you mass-replace.
+
+// This is my creature file, my .cre file. How to create it? Create a character in the game, export him, open him via Shadowkeeper and convert him to .cre. Or copy an existing .cre file. Near Infinity and DLTCEP help you edit your .cre.
+COPY ~Branwen/Characters/O#Bran.cre~ ~override/O#Bran.cre~ // copy our .cre file to the game. Below I edit(patch) O#Bran.cre, adding a soundset, a bio, a dialogue file and other nice things.
+SAY NAME1 ~Branwen~
+SAY NAME2 ~Branwen~
+SAY INITIAL_MEETING ~By the ice breath of Auril! 'Tis good to see new faces and taste freedom again.~ [o#bran01] // This text in square brackets means that BRANW01.wav is assigned here.
+SAY MORALE ~Tempus, forgive my cowardice.~ [o#bran02]
+SAY HAPPY ~I am proud to stand among such strong warriors.~ [o#bran04] 
+SAY UNHAPPY_ANNOYED ~Our actions are not those of warrior born.~ [o#bran05] 
+SAY UNHAPPY_SERIOUS ~What sort of craven cowards are we?~ [o#bran06]
+SAY UNHAPPY_BREAKING ~I can no longer honorably work with such as you.~ [o#bran07]
+SAY LEADER ~I have always dreamt of leading such a worthy band.~ [o#bran08]
+SAY TIRED ~I'm tired.~ [o#bran09]
+SAY BORED ~Damn the icicles of Auril. I'm BORED.~ [o#bran10]
+SAY BATTLE_CRY1 ~Tempus! Give us victory!~ [o#bran03]
+SAY BATTLE_CRY2 ~Tempus! Give us victory!~ [o#bran03]
+SAY BATTLE_CRY3 ~Tempus! Give us victory!~ [o#bran03]
+SAY BATTLE_CRY4 ~Tempus! Give us victory!~ [o#bran03]
+SAY BATTLE_CRY5 ~Tempus! Give us victory!~ [o#bran03] // Branwen BG1 has very few sound files, so I have to use the same line over and over. You can use five different ones, however.
+SAY DAMAGE ~~ [o#bran38] // There's no text when Branwen cries out in pain.
+SAY DYING ~~ [o#bran39]
+SAY HURT ~'Tis but a flesh wound.~ [o#bran11]
+SAY AREA_FOREST ~I am always at ease in the forest. It reminds me of home.~  // If there's no sound file for the line, then it's going to be silent.
+SAY AREA_CITY ~By Tempus, I love the big city!~
+SAY AREA_DUNGEON ~Danger is about. Be wary, friends.~
+SAY AREA_DAY ~Ah, I love traveling in fair weather.~
+SAY AREA_NIGHT ~I can't see a thing. Are we craven thieves that we do not sleep?~
+SAY SELECT_COMMON1 ~By Tempus' shield.~ [o#bran17]
+SAY SELECT_COMMON2 ~What is your command?~ [o#bran18]
+SAY SELECT_COMMON3 ~Hello?~ [o#bran19]
+SAY SELECT_COMMON4 ~By Tempus' shield.~ [o#bran17]
+SAY SELECT_COMMON5 ~What is your command?~ [o#bran18]
+SAY SELECT_COMMON6 ~Hello?~ [o#bran19]
+SAY SELECT_ACTION1 ~'Tis a fine day to die.~ [o#bran20]
+SAY SELECT_ACTION2 ~If Tempus wills it.~ [o#bran21]
+SAY SELECT_ACTION3 ~By Valkur's mighty blade.~ [o#bran22]
+SAY SELECT_ACTION4 ~'Tis better to die on your feet, than live on your knees.~ [o#bran23]
+SAY SELECT_ACTION5 ~May Auril bestow the frost kiss upon our enemies.~ [o#bran24]
+SAY SELECT_ACTION6 ~By Valkur's strapping buttocks.~ [o#bran25]
+SAY SELECT_ACTION7 ~A god's favor is fickle, at best.~ [o#bran26]
+SAY SELECT_RARE1 ~To die in battle is the most glorious death of all.~ [o#bran40]
+SAY SELECT_RARE2 ~Tempus would guide your wayward soul, if you let him.~ [o#bran30]
+SAY CRITICAL_HIT ~Tempus!~
+SAY CRITICAL_MISS ~Argh!~
+SAY TARGET_IMMUNE ~Another weapon! Now!~
+SAY INVENTORY_FULL ~I can carry no more. I had to drop it.~ 
+SAY SPELL_DISRUPTED ~My spell!~
+SAY BIO ~When asked about her past, BRANWEN reveals that she left her home of Seawolf in the Norheim isles at an early age. She was apparently reviled by her own people for wanting to become a priest, a station reserved exclusively for the men of the village. She harbors no resentment, realizing that her faith must face such tests or be worthless. She traveled the coast, offering her services to local militias, and eventually came into the employ of an adventuring troup in the Nashkel area. Branwen had no idea that the group was participating in banditry, however, and on their first raid she balked at attacking a caravan of unarmed merchants. She rebelled, and a mage named Tranzig turned her to stone in the ensuing fight. Despite the unfavorable outcome, Branwen feels that Tempus views her actions approvingly. To attack those that are unarmed is the basest of villainy.~
+WRITE_ASCII 0x248 ~O#BranS~ #8  // override script where you put all the commands for lovetalks and such.
+WRITE_ASCII 0x2cc ~O#Bran~  #8  // dialogue file where we'll put Branwen's greeting dialogue.
+WRITE_ASCII 0x280 ~O#Bran~  #32 // death variable - when we want to refer to Branwen in the game, we'll call her O#Bran. For example, InParty("O#Bran") means that Branwen is in party.
+WRITE_ASCII 0X34  ~BRANWES~ #8  // small portrait
+WRITE_ASCII 0x3c  ~BRANWEM~ #8  // medium portrait
+
+// Are your sounds not running? Check that all filenames are used correctly. It might also be worth it to download and use DLTCEP to convert your .wav files in .wavc(converted wav, same extension) format for the game's use.
+// Most mods now use .ogg audio files, if the mod is fully voiced. For instructions, look at Xan's Xan/Command files. But if you only have thirty or forty files, .wavc format should suffice. Branwen's files are in .wavc format.
+
+COMPILE EVALUATE_BUFFER ~Branwen/Dialogue/O#BBran.d~ // All Branwen's banters with other party members will go here. We need the "EVALUATE_BUFFER" because the chapter variable now uses the OUTER_SPRINT variable defined above for the EET continuous journal system.
+	~Branwen/Dialogue/O#Bran.d~  // Branwen's greeting dialogue will go here. 
+	~Branwen/Dialogue/O#BranJ.d~ // The rest of Branwen's dialogue: her commentary, interjections, talks with the player, lovetalks and everything else.
+	~Branwen/Dialogue/O#BranP.d~ // Branwen's leaving party dialogue will go here.
+
+	~Branwen/Scripts/O#BranS.baf~ // Branwen's script.
+	~Branwen/Scripts/O#BranD.baf~ // Branwen's dream script for events at rest. If you want your NPC to talk to you at rest, add scripting here.
+	~Branwen/Scripts/O#BranF.baf~ // Branwen's "fixing" script. Remember how various modders advised you to "select your NPC and press K"? Well, that's how they do it.
+
+// We are going to spawn Branwen in the Bridge District. It means that we have to add a little bit of script to the Bridge District Area(AR0500). Note that I wrote .bcs in the first part of that line, not .baf
+EXTEND_TOP ~AR0500.bcs~ ~Branwen/Scripts/AR0500.baf~
+
+// The following lines are not needed if you're not planning to code Bodhi's abduction.
+// Since Branwen is going to be romanceable, we are going to add Bodhi's abduction. The dialogue is in O#BRANJ.d file, and the rest is here:
+COMPILE	~Branwen/Scripts/O#BranVC.baf~                     // Branwen's vampire cutscene.
+COMPILE	~Branwen/Scripts/O#BranV.baf~                      // Branwen's vampire script.
+EXTEND_TOP ~BODHIAMB.bcs~ ~Branwen/Scripts/BODHIAMB.baf~   // Extending Bodhi's script
+EXTEND_TOP ~VAMPAMB.bcs~ ~Branwen/Scripts/VAMPAMB.baf~     // New script for Branwen during the abduction
+EXTEND_TOP ~CLEANSE.bcs~ ~Branwen/Scripts/CLEANSE.baf~     // Extra script for the altar of Amaunator
+EXTEND_TOP ~AR0809.bcs~ ~Branwen/Scripts/AR0809.baf~       // Bodhi's crypt, spawning the vampire Branwen
+COPY ~Branwen/Characters/o#branv.cre~ ~override~           // Branwen's vampire creature. If you want her to look different, open her in DLTCEP and change the avatar/gender.
+SAY NAME1 ~Branwen~ // These lines must follow o#branv.cre immediately, otherwise the vampire Branwen won't have a name
+SAY NAME2 ~Branwen~
+WRITE_ASCII 0x248 ~O#BranV~  #8  // override script
+WRITE_ASCII 0x2cc ~O#BranV~  #8  // dialogue file
+WRITE_ASCII 0x280 ~O#BranV~  #32 // death variable
+COPY ~Branwen/Characters/o#branb.itm~ ~override~           // Branwen's body - you can create an /Items folder and place it there, too.
+SAY NAME1 ~Branwen's Body~ // These lines must follow o#branb.itm immediately, otherwise her body won't have a name and a description
+SAY NAME2 ~Branwen's Body~
+SAY UNIDENTIFIED_DESC ~Branwen was captured by Bodhi and infected with vampirism, forcing you to slay her. There may be some way to revive her, though you do not know what it would be.~
+SAY DESC ~Branwen was captured by Bodhi and infected with vampirism, forcing you to slay her. There may be some way to revive her, though you do not know what it would be.~
+
+// Since we're using Bodhi's abduction for Branwen, with journal entries, and we want these journal entries to work for BG2:EE and EET, we need to use this code:
+ACTION_IF GAME_IS ~BG2EE eet~ BEGIN
+ADD_JOURNAL EXISTING TITLE (#74337) @100001 @100002 // #74337 means ~The final Battle with Bodhi~ in BG2EE's dialog.tlk. In short, we give our journal entries a name, but only for BG2EE.
+END
+
+// This code is also used by BG2 Fixpack - it would help you to run custom music for your NPC from "a clean slate", installing "blank" music you could run it with. Not everyone installs the Fixpack, though, so here we go:
+// Feel free to skip this code if you're not using any music in your mod, only your NPC's voice.
+COPY_EXISTING ~songlist.2da~ ~override~
+  SET_2DA_ENTRY 0 2 3 ~Blank.mus~
+// You will note there's a Blank.mus file in your Audio directory - it's needed exactly for that purpose. Delete it if you're not using any music in your mod.
+
+// Now we are going to add Branwen content for the Throne of Bhaal. You need one more cre file, or you could use the same one twice.
+ACTION_IF FILE_EXISTS_IN_GAME ~mel01.cre~ THEN // It means that the Throne of Bhaal is installed. If not, this part is not added to the game. This check also works for BG2:EE games.
+BEGIN // you WILL need an END below.
+
+COPY ~Branwen/Characters/O#Bran25.cre~ ~override/O#Bran25.cre~ // Traditionally, all Throne of Bhaal files have "25" in it. You can use the same .cre file or two files. Below we patch Branwen's ToB .cre file.
+SAY NAME1 ~Branwen~
+SAY NAME2 ~Branwen~
+SAY INITIAL_MEETING ~By the ice breath of Auril! 'Tis good to see new faces and taste freedom again.~ [o#bran01] // This text in square brackets means that BRANW01.wav is assigned here.
+SAY MORALE ~Tempus, forgive my cowardice.~ [o#bran02]
+SAY HAPPY ~I am proud to stand among such strong warriors.~ [o#bran04] 
+SAY UNHAPPY_ANNOYED ~Our actions are not those of warrior born.~ [o#bran05] 
+SAY UNHAPPY_SERIOUS ~What sort of craven cowards are we?~ [o#bran06]
+SAY UNHAPPY_BREAKING ~I can no longer honorably work with such as you.~ [o#bran07]
+SAY LEADER ~I have always dreamt of leading such a worthy band.~ [o#bran08]
+SAY TIRED ~I'm tired.~ [o#bran09]
+SAY BORED ~Damn the icicles of Auril. I'm BORED.~ [o#bran10]
+SAY BATTLE_CRY1 ~Tempus! Give us victory!~ [o#bran03]
+SAY BATTLE_CRY2 ~Tempus! Give us victory!~ [o#bran03]
+SAY BATTLE_CRY3 ~Tempus! Give us victory!~ [o#bran03]
+SAY BATTLE_CRY4 ~Tempus! Give us victory!~ [o#bran03]
+SAY BATTLE_CRY5 ~Tempus! Give us victory!~ [o#bran03] // Branwen BG1 has very few sound files, so I have to use the same line over and over. You can use five different ones, however.
+SAY DAMAGE ~~ [o#bran38] // There's no text when Branwen cries out in pain.
+SAY DYING ~~ [o#bran39]
+SAY HURT ~'Tis but a flesh wound.~ [o#bran11]
+SAY AREA_FOREST ~I am always at ease in the forest. It reminds me of home.~  // If there's no sound file for the line, then it's going to be silent.
+SAY AREA_CITY ~By Tempus, I love the big city!~
+SAY AREA_DUNGEON ~Danger is about. Be wary, friends.~
+SAY AREA_DAY ~Ah, I love traveling in fair weather.~
+SAY AREA_NIGHT ~I can't see a thing. Are we craven thieves that we do not sleep?~
+SAY SELECT_COMMON1 ~By Tempus' shield.~ [o#bran17]
+SAY SELECT_COMMON2 ~What is your command?~ [o#bran18]
+SAY SELECT_COMMON3 ~Hello?~ [o#bran19]
+SAY SELECT_COMMON4 ~By Tempus' shield.~ [o#bran17]
+SAY SELECT_COMMON5 ~What is your command?~ [o#bran18]
+SAY SELECT_COMMON6 ~Hello?~ [o#bran19]
+SAY SELECT_ACTION1 ~'Tis a fine day to die.~ [o#bran20]
+SAY SELECT_ACTION2 ~If Tempus wills it.~ [o#bran21]
+SAY SELECT_ACTION3 ~By Valkur's mighty blade.~ [o#bran22]
+SAY SELECT_ACTION4 ~'Tis better to die on your feet, than live on your knees.~ [o#bran23]
+SAY SELECT_ACTION5 ~May Auril bestow the frost kiss upon our enemies.~ [o#bran24]
+SAY SELECT_ACTION6 ~By Valkur's strapping buttocks.~ [o#bran25]
+SAY SELECT_ACTION7 ~A god's favor is fickle, at best.~ [o#bran26]
+SAY SELECT_RARE1 ~To die in battle is the most glorious death of all.~ [o#bran40]
+SAY SELECT_RARE2 ~Tempus would guide your wayward soul, if you let him.~ [o#bran30]
+SAY CRITICAL_HIT ~Tempus!~
+SAY CRITICAL_MISS ~Argh!~
+SAY TARGET_IMMUNE ~Another weapon! Now!~
+SAY INVENTORY_FULL ~I can carry no more. I had to drop it.~ 
+SAY SPELL_DISRUPTED ~My spell!~
+SAY BIO ~When asked about her past, BRANWEN reveals that she left her home of Seawolf in the Norheim isles at an early age. She was apparently reviled by her own people for wanting to become a priest, a station reserved exclusively for the men of the village. She harbors no resentment, realizing that her faith must face such tests or be worthless. She traveled the coast, offering her services to local militias, and eventually came into the employ of an adventuring troup in the Nashkel area. Branwen had no idea that the group was participating in banditry, however, and on their first raid she balked at attacking a caravan of unarmed merchants. She rebelled, and a mage named Tranzig turned her to stone in the ensuing fight. Despite the unfavorable outcome, Branwen feels that Tempus views her actions approvingly. To attack those that are unarmed is the basest of villainy.~
+WRITE_ASCII 0x248 ~O#Bra25S~ #8  // override script where you put all the commands for lovetalks and such.
+WRITE_ASCII 0x2cc ~O#Bran25~ #8  // dialogue file where we'll put Branwen's greeting dialogue for ToB, if you summon her via Fate Spirit.
+WRITE_ASCII 0x280 ~O#Bran~   #32 // death variable - it remains the same in ToB.
+WRITE_ASCII 0X34  ~BRANWES~  #8  // small portrait
+WRITE_ASCII 0x3c  ~BRANWEM~  #8  // medium portrait
+
+COMPILE EVALUATE_BUFFER ~Branwen/Dialogue/O#BBra25.d~  // All Branwen's ToB banters with other party members will go here. Again, we use 25, because it's a tradution for ToB. Again, "EVALUATE_BUFFER" because of the chapter numbers
+	~Branwen/Dialogue/O#Bran25.d~  // Branwen's ToB greeting dialogue will go here.
+	~Branwen/Dialogue/O#Bra25J.d~  // The rest of Branwen's ToB dialogue: her commentary, interjections, talks with the player, lovetalks and everything else.
+	~Branwen/Dialogue/O#Bra25P.d~  // Branwen's ToB leaving party dialogue will go here.
+
+	~Branwen/Scripts/O#Bra25S.baf~ // Branwen's script for ToB.
+	~Branwen/Scripts/O#Bra25D.baf~ // Branwen's dream script for ToB.
+
+// Baldur's Gate 2: Enhanced Edition adds four new NPCs for your party. Naturally, Branwen banters with these NPCs, too. Let's compile a separate banter file here in ToB section(because it involves Branwen's ToB banter file):
+ACTION_IF GAME_IS ~BG2EE eet~ BEGIN
+COMPILE	~Branwen/Dialogue/BranEE.d~
+END
+
+// Branwen is going to be romanceable, so she'll need a Gorion Wraith sequence. We are going to copy Anomen's sister Moira and turn her into Branwen's grandmother. Like this:
+COPY_EXISTING ~loveone4.cre~ ~override/o#brang.cre~
+SAY NAME1 ~Branwen's Grandmother~
+SAY NAME2 ~Branwen's Grandmother~
+WRITE_ASCII 0x248 ~o#brang~ #8	// override
+WRITE_ASCII 0x2cc ~o#brang~ #8  // dialogue
+WRITE_ASCII 0x280 ~o#brang~ #32 // death variable
+WRITE_ASCII 0x250 ~~ 	    #8  // class script
+WRITE_ASCII 0x258 ~~ 	    #8  // race script
+WRITE_ASCII 0x260 ~~ 	    #8  // general script
+WRITE_ASCII 0x268 ~~	    #8	// default script
+
+// And this is the extra script for Gorion's Wraith:
+EXTEND_TOP ~Cut218g.bcs~  ~Branwen/Scripts/Cut218g.baf~
+
+// This is the cutscene for Branwen's grandmother to appear in the scene with Gorion's wraith:
+COMPILE ~Branwen/Scripts/O#BranG.baf~
+
+// Since we want our NPCs to have an epilogue, we'll add something to the last area in the game:
+EXTEND_TOP ~AR6200.bcs~ ~Branwen/Scripts/AR6200.baf~
+
+// It's an epilogue file. Just copy it for your own needs. Please note that the name of the large portrait for your NPC should be in the upper left corner instead of BranweL.
+COPY ~Branwen/Epilogue/O#Brazz.2da~ ~override/O#Bra01.2da~
+REPLACE ~99999~ ~After the events of the Throne of Bhaal were over, Branwen remained by her friends' side. Their new adventures together rivaled those of Drizzt himself, and indeed, if rumors were true, the famous drow ranger joined them once outside Silverymoon.
+
+Several years later, however, Branwen started yearning for home, and eventually decided to visit her old home village. A holy warrior and a high priestess of Tempus, she was greeted warmly by most of the townsfolk, and remained there for a while.
+
+But adventure beckoned, and soon Branwen joined her friends again, fighting for good and noble ends. Many men and women across the Realms would remember the fair-haired woman with a smile, often recalling her favourite saying: "By Tempus' shield!"~
+
+// Since Branwen is romanceable, we need a second epilogue file for her romance. We copy over the same file under a different name and replace the epilogue text.
+COPY ~Branwen/Epilogue/O#Brazz.2da~ ~override/O#Bra02.2da~
+REPLACE ~99999~ ~Branwen and <CHARNAME> would cross the Realms thrice over, from Kara-Tur to Norheim Isles. Ever together, they would battle dragons and tame demons, match wits with kings and drink with rascals.
+
+They would keep winning admiration of the common folk and respect of the underworld alike, and yet always they would have a moment for one another.
+
+Eventually Branwen and <CHARNAME> would settle down for a time, but some new adventure would always beckon, and, laughing, they would don their traveling garb and take to the road again.
+
+Indeed, many roads they would travel, and many more would be left to discover. "If Tempus wills it," Branwen would once again say with a smile, taking her lover's hand. "What is your command?"~
+
+END // and here ends ToB content
+
+// These files add Branwen's scripts and dialogue files to the game(except for the banter file, that's below). The first block is for SoA-only installs, the second one is for ToB.
+// Here's the order: death variable, leaving party file, main dialogue file(J for joined), dream script for SoA.
+// Or death variable, leaving party file, main dialogue file(J for joined), dream script for SoA, leaving party file for ToB, main dialogue(J) file for ToB, ToB dream script, ToB main script.
+
+APPEND ~pdialog.2da~
+~O#Bran        O#BranP             O#BranJ            O#BranD~
+UNLESS ~O#Bran~
+UNLESS ~25POST~
+
+APPEND ~pdialog.2da~
+~O#Bran        O#BranP             O#BranJ            O#BranD             O#Bra25P             O#Bra25J             O#Bra25D       O#Bra25S~
+UNLESS ~O#Bran~
+IF ~25POST~
+
+// These files add Branwen's banter files to the game. The first block is for SoA-only installs, the second one is for ToB.
+// Here's the order: death variable, SoA banter file for SoA. Or death variable, SoA banter file, ToB banter file for ToB.
+APPEND ~interdia.2da~
+~O#Bran       O#BBran~
+UNLESS ~O#Bran~
+UNLESS ~25FILE~
+
+APPEND ~interdia.2da~
+~O#Bran       O#BBran       O#BBra25~
+UNLESS ~O#Bran~
+IF ~25FILE~
+
+/* comment from jastey: unfortunately, for technical reasons (automated installers etc.), having the readme call at the end of the installation is not good. This is why it is deactivated, but I leave it in for legacy reasons.
+// Some modders use README flag instead. Not me. Every user is presented with a readme file so that they know where to find Branwen, whether she is romanceable and so on.
+//AT_INTERACTIVE_EXIT ~VIEW Branwen/Readme-Branwen.txt~
+*/
+
+// If you want to use README flag instead, use this, just place it in the top part of your file, right after VERSION line but before BEGIN line, and uncomment it. Your players will be asked whether they want to read a readme:
+// README ~Branwen/Readme-Branwen.txt~
+
+// This is really all there is about a simple NPC mod. Since you will probably want your mod to be translated into multiple languages, you can read on the forums about translation files, or .tra files(files with strings that look like @100 = ~Hello!~). This mod is not fully traified for ease-of-use reasons - Branwen NPC is a tutorial of sorts, after all, so her files should be easy enough to read.
+
+// EET related code
+ACTION_IF GAME_IS ~eet~ BEGIN //only true if game is detected as Enhanced Edition Trilogy (mod for BG2:EE)
+  INCLUDE ~EET/other/EET_functions.tph~ //declaration of external EET functions used below. This is part of the EET package the player has in his install so don't worry about it
+  LAF ~EET_NPC_TRANSITION~ //function used to automatically implement EET continuity system. This deals with the transition to ToB and automatically creates all the needed script blocks and dialogue entries for e.g. the calling of the SoA Branwen the player left somewhere via the fate spirit, the disabling of the fate spirit calling if Branwen is in the party upon transition etc. The function will be executed upon installation of the mod. What follows is all entries we need for our Branwen:
+    INT_VAR
+      type = 2 //informs the function that this is BG2 NPC without BG1 content (because the mod doesn't add to BG1)
+      default_ToB = 1 //NPC available as summonable NPC when the game is started in ToB (= new ToB game)
+      clean_ToB = 1 //forces function to clean old BG1 Branwen code that exists in AR4000.BCS and FATESP.DLG (i.e. no entry for the original BG1 Branwen if this mod is installed)
+    STR_VAR
+      dv = "O#Bran" //Branwen Death Variable (script name)
+      override_SoA = "O#BRANS" //Branwen SoA Override script
+      override_ToB = "O#BRA25S" //Branwen ToB Override script
+      dialog_ToB = "O#BRAN25" //Branwen ToB dialogue file
+      cre_ToB = "o#bran25" //Branwen ToB CRE filename
+      string = "Bring me Branwen, the priestess of Tempus." //normally this should be reference to TRA file, but the mod is not traified
+      stringPosDV = "Cernd" //Branwen will be appended right above Cernd
+      clean_ToB_DV = "Branwen" //death variable of BG1 Branwen (see clean_ToB comment)
+  END
+END ELSE BEGIN //we use different Fate Spirit dialogue patching for any other platform than EET
+  COMPILE ~Branwen/Dialogue/FATESP.d~
+END

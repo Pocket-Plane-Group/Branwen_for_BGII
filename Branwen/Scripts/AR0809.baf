@@ -1,0 +1,9 @@
+// Branwen's abduction, adding to Bodhi's crypt: script for Branwen's vampire appearance
+IF
+Global("O#BranVampire","GLOBAL",1)
+THEN
+RESPONSE #100
+CreateCreature("O#BRANV",[1473.332],2) 
+GiveItemCreate("O#BranB","O#BranV",1,0,0) // When Branwen the vampire dies, we are going to get her body
+SetGlobal("O#BranVampire","GLOBAL",2)
+END

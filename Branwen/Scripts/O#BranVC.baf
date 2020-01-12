@@ -1,0 +1,30 @@
+// This is a cutscene for Branwen's abduction by Bodhi.
+IF
+True()
+THEN
+RESPONSE #100
+CutSceneId("O#Bran")
+CreateCreatureObject("VAMPAMB","O#Bran",0,0,0)
+SetGlobal("O#BranVampire","GLOBAL",1)
+Wait(1)
+CreateVisualEffectObject("SPDISPMA",Myself)
+DropInventory()
+SetLeavePartyDialogFile()
+ChangeAIScript("VAMPAMB",OVERRIDE)
+ChangeAIScript("",DEFAULT)
+DialogInterrupt(FALSE)
+LeaveParty()
+EndCutSceneMode()
+END
+
+IF
+True()
+THEN
+RESPONSE #100
+CutSceneId("bodhiamb")
+DialogInterrupt(FALSE)
+CreateCreatureObject("VAMPIM01",Myself,0,0,0)
+CreateCreatureObject("VAMPIM01",Myself,0,0,0)
+CreateCreatureObject("VAMPIM01",Myself,0,0,0)
+CreateCreatureObject("VAMPIM01",Myself,0,0,0)
+END

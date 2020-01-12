@@ -1,0 +1,41 @@
+// This is Branwen's dream script for SoA. It means that all events and talks that should happen at rest are scripted here.
+// We have two lovetalks in O#BranJ.d - one after talk #1, and one after talk #15.
+
+// Lovetalk 1
+IF
+InParty(Myself)
+Global("O#BranLovetalk","GLOBAL",1)
+Global("O#BranRomanceActive","GLOBAL",1)
+Global("O#BranShutUp","GLOBAL",0)
+GlobalGT("O#BranTalk","GLOBAL",2) // talk 1 already happened
+!StateCheck(Player1,CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+!AreaType(DUNGEON)
+THEN
+RESPONSE #100
+IncrementGlobal("O#BranLovetalk","GLOBAL",1)
+PlaySong(0)
+PlaySound("O#BRAN")
+StartDialogueNoSet(Player1)
+END
+
+// Lovetalk 2
+IF
+InParty(Myself)
+Global("O#BranLovetalk","GLOBAL",3)
+Global("O#BranRomanceActive","GLOBAL",1)
+Global("O#BranShutUp","GLOBAL",0)
+GlobalGT("O#BranTalk","GLOBAL",30) // talk 15 already happened
+!StateCheck(Player1,CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+!AreaType(DUNGEON)
+THEN
+RESPONSE #100
+IncrementGlobal("O#BranLovetalk","GLOBAL",1)
+PlaySong(0)
+PlaySound("O#BRAN")
+StartDialogueNoSet(Player1)
+END
+
+// In O#BranS.baf, we might have needed two blocks for each talk. But we don't need it in the dream script - here all talks run automatically.
+

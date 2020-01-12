@@ -1,0 +1,9 @@
+// And this is the extra script for Gorion's Wraith:
+IF
+True()
+THEN
+RESPONSE #100
+CutSceneId(Player1)
+CreateVisualEffectObject("SPFLESHS","O#BranG")
+ActionOverride("O#BranG",DestroySelf())
+END
