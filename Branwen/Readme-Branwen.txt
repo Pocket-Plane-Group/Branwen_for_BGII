@@ -1,5 +1,5 @@
 			Branwen NPC MOD for Baldur's Gate II
-				   Version 4
+				   Version 5
 			  A Pocket Plane Group Project
 			   http://www.pocketplane.net
 
@@ -183,6 +183,9 @@ WeiDU					http://www.weidu.org
 -------------------
 6. Version History
 -------------------
+
+Version 5
+-updated branwen.ini with the GitHub address for download
 
 Version 4
 - EET compatibility (with explanations!)
