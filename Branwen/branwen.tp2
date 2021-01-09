@@ -12,12 +12,12 @@ BACKUP ~Branwen/Backup~
 
 AUTHOR ~Kulyok at http://forums.pocketplane.net~ // If the player gets an installation error, he'll know where to post his bug reports
 
-VERSION ~v5~  // This is not necessary, but recommended. A version number will be reflected in your Weidu.log. This way you will know which version a player with a bug report has installed. V4, v1alpha, v1.23 will work too.
+VERSION ~v6~  // This is not necessary, but recommended. A version number will be reflected in your Weidu.log. This way you will know which version a player with a bug report has installed. V4, v1alpha, v1.23 will work too.
 
 //you can put a readme call here. This will give the standard "Would you like to display the readme? [Y]es [N]o" question at the beginning of the install.
 README ~Branwen/Readme-Branwen.txt~
 
-AUTO_TRA ~Branwen/%s~ // This is translation support. It means that your mdo will eventually have directories like MyMod/French, MyMod/Italian and MyMod/Polish, and this line will tell the compiler where to look.
+AUTO_TRA ~Branwen/tra/%s~ // This is translation support. It means that your mdo will eventually have directories like MyMod/French, MyMod/Italian and MyMod/Polish, and this line will tell the compiler where to look.
 
 /* next comes the definition of the journal numbers so EET's continuous journal system works, too */
 ALWAYS
@@ -33,18 +33,35 @@ ALWAYS
       OUTER_SET EVAL ~%name_source%~ = bg2_chapter
     END
   END
-END
-
-LANGUAGE ~English~ ~English~ ~Branwen/English/Setup-Branwen.tra~ // This is an example line for English language. If you want, you can also use Translations/English folder
-//The first entry is the name of the language displayed upon install. The second entry is the name of the folder the language files are in.
-//The path given is the one to all tra-files needed for installation (can be more than one, just list them one after the other in tildas (~)
+  
+ 
+     // convert strings to UTF-8 for BGEE/BG2EE
 /*
 Small addition by jastey (same as in the readme):
 Please note: for BGII:EE and EET, if you want to create a mod that uses any other letters or symbols than the latin (english) alphabet, you need to provide the texts in UTF-8 (without BOM) format, whereas the original game needs them in ANSI. So in case you do, you'll need to get familiar with using d/tra-pairs in your mod ("traify-ing" your mod) and using HANDLE_CHARSETS + iconv.exe for text transformation upon install. 
-Branwen NPC MOD for Baldur's Gate II does not contain this, one reason being that it was originally written before the EE was available, but we still think it's a good first start and if you reached the level of this mod with yours, then your modding skills will be good enough to go the step to unsing weidu --traify without problems! -jastey
 */
+	
+ACTION_DEFINE_ARRAY 9xnoconvert BEGIN END //list here files that do not need to be converted, e.g. a file that only contains setup files.
+ACTION_DEFINE_ARRAY 9xreload BEGIN setup END //list the files that get read in after LANGUAGE declaration so the correct format will be used for ingame texts.
 
-BEGIN ~Branwen BG2 NPC mod for players and modders~ // This is the name of your mod.
+  LAF HANDLE_CHARSETS
+    INT_VAR
+      infer_charsets = 1
+    STR_VAR
+      tra_path = EVAL ~%MOD_FOLDER%/tra~
+      noconvert_array = 9xnoconvert
+      reload_array = 9xreload
+END  
+ 
+  
+END
+
+LANGUAGE ~English~ ~English~ ~Branwen/tra/English/setup.tra~ // This is an example line for English language. If you want, you can also use Tra/English folder
+//The first entry is the name of the language displayed upon install. The second entry is the name of the folder the language files are in.
+//The path given is the one to all tra-files needed for installation (can be more than one, just list them one after the other in tildas (~)
+
+
+BEGIN @1 /* Branwen BG2 NPC mod for players and modders */ // This is the name of your mod.
 
 // These two lines were created by CamDawg. It's a new state that checks if NPC is able to talk. USE this in your mod. See the dialogue for details.
 APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~
@@ -68,51 +85,51 @@ COPY ~Branwen/Audio~ ~override~ // All Branwen's audio files are in the game now
 
 // This is my creature file, my .cre file. How to create it? Create a character in the game, export him, open him via Shadowkeeper and convert him to .cre. Or copy an existing .cre file. Near Infinity and DLTCEP help you edit your .cre.
 COPY ~Branwen/Characters/O#Bran.cre~ ~override/O#Bran.cre~ // copy our .cre file to the game. Below I edit(patch) O#Bran.cre, adding a soundset, a bio, a dialogue file and other nice things.
-SAY NAME1 ~Branwen~
-SAY NAME2 ~Branwen~
-SAY INITIAL_MEETING ~By the ice breath of Auril! 'Tis good to see new faces and taste freedom again.~ [o#bran01] // This text in square brackets means that BRANW01.wav is assigned here.
-SAY MORALE ~Tempus, forgive my cowardice.~ [o#bran02]
-SAY HAPPY ~I am proud to stand among such strong warriors.~ [o#bran04] 
-SAY UNHAPPY_ANNOYED ~Our actions are not those of warrior born.~ [o#bran05] 
-SAY UNHAPPY_SERIOUS ~What sort of craven cowards are we?~ [o#bran06]
-SAY UNHAPPY_BREAKING ~I can no longer honorably work with such as you.~ [o#bran07]
-SAY LEADER ~I have always dreamt of leading such a worthy band.~ [o#bran08]
-SAY TIRED ~I'm tired.~ [o#bran09]
-SAY BORED ~Damn the icicles of Auril. I'm BORED.~ [o#bran10]
-SAY BATTLE_CRY1 ~Tempus! Give us victory!~ [o#bran03]
-SAY BATTLE_CRY2 ~Tempus! Give us victory!~ [o#bran03]
-SAY BATTLE_CRY3 ~Tempus! Give us victory!~ [o#bran03]
-SAY BATTLE_CRY4 ~Tempus! Give us victory!~ [o#bran03]
-SAY BATTLE_CRY5 ~Tempus! Give us victory!~ [o#bran03] // Branwen BG1 has very few sound files, so I have to use the same line over and over. You can use five different ones, however.
+SAY NAME1 @2 /* Branwen */
+SAY NAME2 @2 /* Branwen */
+SAY INITIAL_MEETING @3 /* By the ice breath of Auril! 'Tis good to see new faces and taste freedom again. */ // This text in square brackets means that BRANW01.wav is assigned here.
+SAY MORALE @4 /* Tempus, forgive my cowardice. */
+SAY HAPPY @5 /* I am proud to stand among such strong warriors. */ 
+SAY UNHAPPY_ANNOYED @6 /* Our actions are not those of warrior born. */ 
+SAY UNHAPPY_SERIOUS @7 /* What sort of craven cowards are we? */
+SAY UNHAPPY_BREAKING @8 /* I can no longer honorably work with such as you. */
+SAY LEADER @9 /* I have always dreamt of leading such a worthy band. */
+SAY TIRED @10 /* I'm tired. */
+SAY BORED @11 /* Damn the icicles of Auril. I'm BORED. */
+SAY BATTLE_CRY1 @12 /* Tempus! Give us victory! */
+SAY BATTLE_CRY2 @12 /* Tempus! Give us victory! */
+SAY BATTLE_CRY3 @12 /* Tempus! Give us victory! */
+SAY BATTLE_CRY4 @12 /* Tempus! Give us victory! */
+SAY BATTLE_CRY5 @12 /* Tempus! Give us victory! */ // Branwen BG1 has very few sound files, so I have to use the same line over and over. You can use five different ones, however.
 SAY DAMAGE ~~ [o#bran38] // There's no text when Branwen cries out in pain.
 SAY DYING ~~ [o#bran39]
-SAY HURT ~'Tis but a flesh wound.~ [o#bran11]
-SAY AREA_FOREST ~I am always at ease in the forest. It reminds me of home.~  // If there's no sound file for the line, then it's going to be silent.
-SAY AREA_CITY ~By Tempus, I love the big city!~
-SAY AREA_DUNGEON ~Danger is about. Be wary, friends.~
-SAY AREA_DAY ~Ah, I love traveling in fair weather.~
-SAY AREA_NIGHT ~I can't see a thing. Are we craven thieves that we do not sleep?~
-SAY SELECT_COMMON1 ~By Tempus' shield.~ [o#bran17]
-SAY SELECT_COMMON2 ~What is your command?~ [o#bran18]
-SAY SELECT_COMMON3 ~Hello?~ [o#bran19]
-SAY SELECT_COMMON4 ~By Tempus' shield.~ [o#bran17]
-SAY SELECT_COMMON5 ~What is your command?~ [o#bran18]
-SAY SELECT_COMMON6 ~Hello?~ [o#bran19]
-SAY SELECT_ACTION1 ~'Tis a fine day to die.~ [o#bran20]
-SAY SELECT_ACTION2 ~If Tempus wills it.~ [o#bran21]
-SAY SELECT_ACTION3 ~By Valkur's mighty blade.~ [o#bran22]
-SAY SELECT_ACTION4 ~'Tis better to die on your feet, than live on your knees.~ [o#bran23]
-SAY SELECT_ACTION5 ~May Auril bestow the frost kiss upon our enemies.~ [o#bran24]
-SAY SELECT_ACTION6 ~By Valkur's strapping buttocks.~ [o#bran25]
-SAY SELECT_ACTION7 ~A god's favor is fickle, at best.~ [o#bran26]
-SAY SELECT_RARE1 ~To die in battle is the most glorious death of all.~ [o#bran40]
-SAY SELECT_RARE2 ~Tempus would guide your wayward soul, if you let him.~ [o#bran30]
-SAY CRITICAL_HIT ~Tempus!~
-SAY CRITICAL_MISS ~Argh!~
-SAY TARGET_IMMUNE ~Another weapon! Now!~
-SAY INVENTORY_FULL ~I can carry no more. I had to drop it.~ 
-SAY SPELL_DISRUPTED ~My spell!~
-SAY BIO ~When asked about her past, BRANWEN reveals that she left her home of Seawolf in the Norheim isles at an early age. She was apparently reviled by her own people for wanting to become a priest, a station reserved exclusively for the men of the village. She harbors no resentment, realizing that her faith must face such tests or be worthless. She traveled the coast, offering her services to local militias, and eventually came into the employ of an adventuring troup in the Nashkel area. Branwen had no idea that the group was participating in banditry, however, and on their first raid she balked at attacking a caravan of unarmed merchants. She rebelled, and a mage named Tranzig turned her to stone in the ensuing fight. Despite the unfavorable outcome, Branwen feels that Tempus views her actions approvingly. To attack those that are unarmed is the basest of villainy.~
+SAY HURT @15 /* 'Tis but a flesh wound. */
+SAY AREA_FOREST @16 /* I am always at ease in the forest. It reminds me of home. */  // If there's no sound file for the line, then it's going to be silent.
+SAY AREA_CITY @17 /* By Tempus, I love the big city! */
+SAY AREA_DUNGEON @18 /* Danger is about. Be wary, friends. */
+SAY AREA_DAY @19 /* Ah, I love traveling in fair weather. */
+SAY AREA_NIGHT @20 /* I can't see a thing. Are we craven thieves that we do not sleep? */
+SAY SELECT_COMMON1 @21 /* By Tempus' shield. */
+SAY SELECT_COMMON2 @22 /* What is your command? */
+SAY SELECT_COMMON3 @23 /* Hello? */
+SAY SELECT_COMMON4 @21 /* By Tempus' shield. */
+SAY SELECT_COMMON5 @22 /* What is your command? */
+SAY SELECT_COMMON6 @23 /* Hello? */
+SAY SELECT_ACTION1 @24 /* 'Tis a fine day to die. */
+SAY SELECT_ACTION2 @25 /* If Tempus wills it. */
+SAY SELECT_ACTION3 @26 /* By Valkur's mighty blade. */
+SAY SELECT_ACTION4 @27 /* 'Tis better to die on your feet, than live on your knees. */
+SAY SELECT_ACTION5 @28 /* May Auril bestow the frost kiss upon our enemies. */
+SAY SELECT_ACTION6 @29 /* By Valkur's strapping buttocks. */
+SAY SELECT_ACTION7 @30 /* A god's favor is fickle, at best. */
+SAY SELECT_RARE1 @31 /* To die in battle is the most glorious death of all. */
+SAY SELECT_RARE2 @32 /* Tempus would guide your wayward soul, if you let him. */
+SAY CRITICAL_HIT @33 /* Tempus! */
+SAY CRITICAL_MISS @34 /* Argh! */
+SAY TARGET_IMMUNE @35 /* Another weapon! Now! */
+SAY INVENTORY_FULL @36 /* I can carry no more. I had to drop it. */ 
+SAY SPELL_DISRUPTED @37 /* My spell! */
+SAY BIO @38 /* When asked about her past, BRANWEN reveals that she left her home of Seawolf in the Norheim isles at an early age. She was apparently reviled by her own people for wanting to become a priest, a station reserved exclusively for the men of the village. She harbors no resentment, realizing that her faith must face such tests or be worthless. She traveled the coast, offering her services to local militias, and eventually came into the employ of an adventuring troup in the Nashkel area. Branwen had no idea that the group was participating in banditry, however, and on their first raid she balked at attacking a caravan of unarmed merchants. She rebelled, and a mage named Tranzig turned her to stone in the ensuing fight. Despite the unfavorable outcome, Branwen feels that Tempus views her actions approvingly. To attack those that are unarmed is the basest of villainy. */
 WRITE_ASCII 0x248 ~O#BranS~ #8  // override script where you put all the commands for lovetalks and such.
 WRITE_ASCII 0x2cc ~O#Bran~  #8  // dialogue file where we'll put Branwen's greeting dialogue.
 WRITE_ASCII 0x280 ~O#Bran~  #32 // death variable - when we want to refer to Branwen in the game, we'll call her O#Bran. For example, InParty("O#Bran") means that Branwen is in party.
@@ -143,16 +160,16 @@ EXTEND_TOP ~VAMPAMB.bcs~ ~Branwen/Scripts/VAMPAMB.baf~     // New script for Bra
 EXTEND_TOP ~CLEANSE.bcs~ ~Branwen/Scripts/CLEANSE.baf~     // Extra script for the altar of Amaunator
 EXTEND_TOP ~AR0809.bcs~ ~Branwen/Scripts/AR0809.baf~       // Bodhi's crypt, spawning the vampire Branwen
 COPY ~Branwen/Characters/o#branv.cre~ ~override~           // Branwen's vampire creature. If you want her to look different, open her in DLTCEP and change the avatar/gender.
-SAY NAME1 ~Branwen~ // These lines must follow o#branv.cre immediately, otherwise the vampire Branwen won't have a name
-SAY NAME2 ~Branwen~
+SAY NAME1 @2 /* Branwen */ // These lines must follow o#branv.cre immediately, otherwise the vampire Branwen won't have a name
+SAY NAME2 @2 /* Branwen */
 WRITE_ASCII 0x248 ~O#BranV~  #8  // override script
 WRITE_ASCII 0x2cc ~O#BranV~  #8  // dialogue file
 WRITE_ASCII 0x280 ~O#BranV~  #32 // death variable
 COPY ~Branwen/Characters/o#branb.itm~ ~override~           // Branwen's body - you can create an /Items folder and place it there, too.
-SAY NAME1 ~Branwen's Body~ // These lines must follow o#branb.itm immediately, otherwise her body won't have a name and a description
-SAY NAME2 ~Branwen's Body~
-SAY UNIDENTIFIED_DESC ~Branwen was captured by Bodhi and infected with vampirism, forcing you to slay her. There may be some way to revive her, though you do not know what it would be.~
-SAY DESC ~Branwen was captured by Bodhi and infected with vampirism, forcing you to slay her. There may be some way to revive her, though you do not know what it would be.~
+SAY NAME1 @39 /* Branwen's Body */ // These lines must follow o#branb.itm immediately, otherwise her body won't have a name and a description
+SAY NAME2 @39 /* Branwen's Body */
+SAY UNIDENTIFIED_DESC @40 /* Branwen was captured by Bodhi and infected with vampirism, forcing you to slay her. There may be some way to revive her, though you do not know what it would be. */
+SAY DESC @40 /* Branwen was captured by Bodhi and infected with vampirism, forcing you to slay her. There may be some way to revive her, though you do not know what it would be. */
 
 // Since we're using Bodhi's abduction for Branwen, with journal entries, and we want these journal entries to work for BG2:EE and EET, we need to use this code:
 ACTION_IF GAME_IS ~BG2EE eet~ BEGIN
@@ -170,51 +187,51 @@ ACTION_IF FILE_EXISTS_IN_GAME ~mel01.cre~ THEN // It means that the Throne of Bh
 BEGIN // you WILL need an END below.
 
 COPY ~Branwen/Characters/O#Bran25.cre~ ~override/O#Bran25.cre~ // Traditionally, all Throne of Bhaal files have "25" in it. You can use the same .cre file or two files. Below we patch Branwen's ToB .cre file.
-SAY NAME1 ~Branwen~
-SAY NAME2 ~Branwen~
-SAY INITIAL_MEETING ~By the ice breath of Auril! 'Tis good to see new faces and taste freedom again.~ [o#bran01] // This text in square brackets means that BRANW01.wav is assigned here.
-SAY MORALE ~Tempus, forgive my cowardice.~ [o#bran02]
-SAY HAPPY ~I am proud to stand among such strong warriors.~ [o#bran04] 
-SAY UNHAPPY_ANNOYED ~Our actions are not those of warrior born.~ [o#bran05] 
-SAY UNHAPPY_SERIOUS ~What sort of craven cowards are we?~ [o#bran06]
-SAY UNHAPPY_BREAKING ~I can no longer honorably work with such as you.~ [o#bran07]
-SAY LEADER ~I have always dreamt of leading such a worthy band.~ [o#bran08]
-SAY TIRED ~I'm tired.~ [o#bran09]
-SAY BORED ~Damn the icicles of Auril. I'm BORED.~ [o#bran10]
-SAY BATTLE_CRY1 ~Tempus! Give us victory!~ [o#bran03]
-SAY BATTLE_CRY2 ~Tempus! Give us victory!~ [o#bran03]
-SAY BATTLE_CRY3 ~Tempus! Give us victory!~ [o#bran03]
-SAY BATTLE_CRY4 ~Tempus! Give us victory!~ [o#bran03]
-SAY BATTLE_CRY5 ~Tempus! Give us victory!~ [o#bran03] // Branwen BG1 has very few sound files, so I have to use the same line over and over. You can use five different ones, however.
+SAY NAME1 @2 /* Branwen */
+SAY NAME2 @2 /* Branwen */
+SAY INITIAL_MEETING @3 /* By the ice breath of Auril! 'Tis good to see new faces and taste freedom again. */ // This text in square brackets means that BRANW01.wav is assigned here.
+SAY MORALE @4 /* Tempus, forgive my cowardice. */
+SAY HAPPY @5 /* I am proud to stand among such strong warriors. */ 
+SAY UNHAPPY_ANNOYED @6 /* Our actions are not those of warrior born. */ 
+SAY UNHAPPY_SERIOUS @7 /* What sort of craven cowards are we? */
+SAY UNHAPPY_BREAKING @8 /* I can no longer honorably work with such as you. */
+SAY LEADER @9 /* I have always dreamt of leading such a worthy band. */
+SAY TIRED @10 /* I'm tired. */
+SAY BORED @11 /* Damn the icicles of Auril. I'm BORED. */
+SAY BATTLE_CRY1 @12 /* Tempus! Give us victory! */
+SAY BATTLE_CRY2 @12 /* Tempus! Give us victory! */
+SAY BATTLE_CRY3 @12 /* Tempus! Give us victory! */
+SAY BATTLE_CRY4 @12 /* Tempus! Give us victory! */
+SAY BATTLE_CRY5 @12 /* Tempus! Give us victory! */ // Branwen BG1 has very few sound files, so I have to use the same line over and over. You can use five different ones, however.
 SAY DAMAGE ~~ [o#bran38] // There's no text when Branwen cries out in pain.
 SAY DYING ~~ [o#bran39]
-SAY HURT ~'Tis but a flesh wound.~ [o#bran11]
-SAY AREA_FOREST ~I am always at ease in the forest. It reminds me of home.~  // If there's no sound file for the line, then it's going to be silent.
-SAY AREA_CITY ~By Tempus, I love the big city!~
-SAY AREA_DUNGEON ~Danger is about. Be wary, friends.~
-SAY AREA_DAY ~Ah, I love traveling in fair weather.~
-SAY AREA_NIGHT ~I can't see a thing. Are we craven thieves that we do not sleep?~
-SAY SELECT_COMMON1 ~By Tempus' shield.~ [o#bran17]
-SAY SELECT_COMMON2 ~What is your command?~ [o#bran18]
-SAY SELECT_COMMON3 ~Hello?~ [o#bran19]
-SAY SELECT_COMMON4 ~By Tempus' shield.~ [o#bran17]
-SAY SELECT_COMMON5 ~What is your command?~ [o#bran18]
-SAY SELECT_COMMON6 ~Hello?~ [o#bran19]
-SAY SELECT_ACTION1 ~'Tis a fine day to die.~ [o#bran20]
-SAY SELECT_ACTION2 ~If Tempus wills it.~ [o#bran21]
-SAY SELECT_ACTION3 ~By Valkur's mighty blade.~ [o#bran22]
-SAY SELECT_ACTION4 ~'Tis better to die on your feet, than live on your knees.~ [o#bran23]
-SAY SELECT_ACTION5 ~May Auril bestow the frost kiss upon our enemies.~ [o#bran24]
-SAY SELECT_ACTION6 ~By Valkur's strapping buttocks.~ [o#bran25]
-SAY SELECT_ACTION7 ~A god's favor is fickle, at best.~ [o#bran26]
-SAY SELECT_RARE1 ~To die in battle is the most glorious death of all.~ [o#bran40]
-SAY SELECT_RARE2 ~Tempus would guide your wayward soul, if you let him.~ [o#bran30]
-SAY CRITICAL_HIT ~Tempus!~
-SAY CRITICAL_MISS ~Argh!~
-SAY TARGET_IMMUNE ~Another weapon! Now!~
-SAY INVENTORY_FULL ~I can carry no more. I had to drop it.~ 
-SAY SPELL_DISRUPTED ~My spell!~
-SAY BIO ~When asked about her past, BRANWEN reveals that she left her home of Seawolf in the Norheim isles at an early age. She was apparently reviled by her own people for wanting to become a priest, a station reserved exclusively for the men of the village. She harbors no resentment, realizing that her faith must face such tests or be worthless. She traveled the coast, offering her services to local militias, and eventually came into the employ of an adventuring troup in the Nashkel area. Branwen had no idea that the group was participating in banditry, however, and on their first raid she balked at attacking a caravan of unarmed merchants. She rebelled, and a mage named Tranzig turned her to stone in the ensuing fight. Despite the unfavorable outcome, Branwen feels that Tempus views her actions approvingly. To attack those that are unarmed is the basest of villainy.~
+SAY HURT @15 /* 'Tis but a flesh wound. */
+SAY AREA_FOREST @16 /* I am always at ease in the forest. It reminds me of home. */  // If there's no sound file for the line, then it's going to be silent.
+SAY AREA_CITY @17 /* By Tempus, I love the big city! */
+SAY AREA_DUNGEON @18 /* Danger is about. Be wary, friends. */
+SAY AREA_DAY @19 /* Ah, I love traveling in fair weather. */
+SAY AREA_NIGHT @20 /* I can't see a thing. Are we craven thieves that we do not sleep? */
+SAY SELECT_COMMON1 @21 /* By Tempus' shield. */
+SAY SELECT_COMMON2 @22 /* What is your command? */
+SAY SELECT_COMMON3 @23 /* Hello? */
+SAY SELECT_COMMON4 @21 /* By Tempus' shield. */
+SAY SELECT_COMMON5 @22 /* What is your command? */
+SAY SELECT_COMMON6 @23 /* Hello? */
+SAY SELECT_ACTION1 @24 /* 'Tis a fine day to die. */
+SAY SELECT_ACTION2 @25 /* If Tempus wills it. */
+SAY SELECT_ACTION3 @26 /* By Valkur's mighty blade. */
+SAY SELECT_ACTION4 @27 /* 'Tis better to die on your feet, than live on your knees. */
+SAY SELECT_ACTION5 @28 /* May Auril bestow the frost kiss upon our enemies. */
+SAY SELECT_ACTION6 @29 /* By Valkur's strapping buttocks. */
+SAY SELECT_ACTION7 @30 /* A god's favor is fickle, at best. */
+SAY SELECT_RARE1 @31 /* To die in battle is the most glorious death of all. */
+SAY SELECT_RARE2 @32 /* Tempus would guide your wayward soul, if you let him. */
+SAY CRITICAL_HIT @33 /* Tempus! */
+SAY CRITICAL_MISS @34 /* Argh! */
+SAY TARGET_IMMUNE @35 /* Another weapon! Now! */
+SAY INVENTORY_FULL @36 /* I can carry no more. I had to drop it. */ 
+SAY SPELL_DISRUPTED @37 /* My spell! */
+SAY BIO @38 /* When asked about her past, BRANWEN reveals that she left her home of Seawolf in the Norheim isles at an early age. She was apparently reviled by her own people for wanting to become a priest, a station reserved exclusively for the men of the village. She harbors no resentment, realizing that her faith must face such tests or be worthless. She traveled the coast, offering her services to local militias, and eventually came into the employ of an adventuring troup in the Nashkel area. Branwen had no idea that the group was participating in banditry, however, and on their first raid she balked at attacking a caravan of unarmed merchants. She rebelled, and a mage named Tranzig turned her to stone in the ensuing fight. Despite the unfavorable outcome, Branwen feels that Tempus views her actions approvingly. To attack those that are unarmed is the basest of villainy. */
 WRITE_ASCII 0x248 ~O#Bra25S~ #8  // override script where you put all the commands for lovetalks and such.
 WRITE_ASCII 0x2cc ~O#Bran25~ #8  // dialogue file where we'll put Branwen's greeting dialogue for ToB, if you summon her via Fate Spirit.
 WRITE_ASCII 0x280 ~O#Bran~   #32 // death variable - it remains the same in ToB.
@@ -236,8 +253,8 @@ END
 
 // Branwen is going to be romanceable, so she'll need a Gorion Wraith sequence. We are going to copy Anomen's sister Moira and turn her into Branwen's grandmother. Like this:
 COPY_EXISTING ~loveone4.cre~ ~override/o#brang.cre~
-SAY NAME1 ~Branwen's Grandmother~
-SAY NAME2 ~Branwen's Grandmother~
+SAY NAME1 @41 /* Branwen's Grandmother */
+SAY NAME2 @41 /* Branwen's Grandmother */
 WRITE_ASCII 0x248 ~o#brang~ #8	// override
 WRITE_ASCII 0x2cc ~o#brang~ #8  // dialogue
 WRITE_ASCII 0x280 ~o#brang~ #32 // death variable
@@ -257,21 +274,21 @@ EXTEND_TOP ~AR6200.bcs~ ~Branwen/Scripts/AR6200.baf~
 
 // It's an epilogue file. Just copy it for your own needs. Please note that the name of the large portrait for your NPC should be in the upper left corner instead of BranweL.
 COPY ~Branwen/Epilogue/O#Brazz.2da~ ~override/O#Bra01.2da~
-REPLACE ~99999~ ~After the events of the Throne of Bhaal were over, Branwen remained by her friends' side. Their new adventures together rivaled those of Drizzt himself, and indeed, if rumors were true, the famous drow ranger joined them once outside Silverymoon.
+REPLACE ~99999~ @42 /* After the events of the Throne of Bhaal were over, Branwen remained by her friends' side. Their new adventures together rivaled those of Drizzt himself, and indeed, if rumors were true, the famous drow ranger joined them once outside Silverymoon.
 
 Several years later, however, Branwen started yearning for home, and eventually decided to visit her old home village. A holy warrior and a high priestess of Tempus, she was greeted warmly by most of the townsfolk, and remained there for a while.
 
-But adventure beckoned, and soon Branwen joined her friends again, fighting for good and noble ends. Many men and women across the Realms would remember the fair-haired woman with a smile, often recalling her favourite saying: "By Tempus' shield!"~
+But adventure beckoned, and soon Branwen joined her friends again, fighting for good and noble ends. Many men and women across the Realms would remember the fair-haired woman with a smile, often recalling her favourite saying: "By Tempus' shield!" */
 
 // Since Branwen is romanceable, we need a second epilogue file for her romance. We copy over the same file under a different name and replace the epilogue text.
 COPY ~Branwen/Epilogue/O#Brazz.2da~ ~override/O#Bra02.2da~
-REPLACE ~99999~ ~Branwen and <CHARNAME> would cross the Realms thrice over, from Kara-Tur to Norheim Isles. Ever together, they would battle dragons and tame demons, match wits with kings and drink with rascals.
+REPLACE ~99999~ @43 /* Branwen and <CHARNAME> would cross the Realms thrice over, from Kara-Tur to Norheim Isles. Ever together, they would battle dragons and tame demons, match wits with kings and drink with rascals.
 
 They would keep winning admiration of the common folk and respect of the underworld alike, and yet always they would have a moment for one another.
 
 Eventually Branwen and <CHARNAME> would settle down for a time, but some new adventure would always beckon, and, laughing, they would don their traveling garb and take to the road again.
 
-Indeed, many roads they would travel, and many more would be left to discover. "If Tempus wills it," Branwen would once again say with a smile, taking her lover's hand. "What is your command?"~
+Indeed, many roads they would travel, and many more would be left to discover. "If Tempus wills it," Branwen would once again say with a smile, taking her lover's hand. "What is your command?" */
 
 END // and here ends ToB content
 

@@ -8,15 +8,15 @@ BEGIN O#BranP
 // Just copy this and use your own filenames and variable names. Don't forget your very own modding prefix!
 
 IF ~Global("O#BranKickedOut","GLOBAL",0) HappinessLT(Myself,-299)~ b1
-SAY ~By Auril's frozen breath, I am leaving! May Tempus someday show you the error of your ways.~
+SAY @0 /* By Auril's frozen breath, I am leaving! May Tempus someday show you the error of your ways. */
 IF ~~ DO ~EscapeArea()~ EXIT
 END
 
 // The player kicks Branwen out. The list of areas is the same for every NPC in the game. Use iesdp.gibberlings3.net to find out what each area code means.
 
 IF ~Global("O#BranKickedOut","GLOBAL",0)~ b2
-SAY ~We have fought well and we have fought bravely. Tempus willing, perhaps I will fight at your side again someday.~
-++ ~My mistake. Please, don't leave.~ DO ~JoinParty()~ EXIT
+SAY @1 /* We have fought well and we have fought bravely. Tempus willing, perhaps I will fight at your side again someday. */
+++ @2 /* My mistake. Please, don't leave. */ DO ~JoinParty()~ EXIT
 + ~!AreaCheck("AR0603")
 !AreaCheck("AR0410")
 !AreaCheck("AR0411")
@@ -35,7 +35,7 @@ SAY ~We have fought well and we have fought bravely. Tempus willing, perhaps I w
 !AreaCheck("AR1505")
 !AreaCheck("AR1506")
 !AreaCheck("AR1507")
-!AreaCheck("AR1508")~ + ~Of course. Wait for me in the Bridge District.~ DO ~SetGlobal("O#BranKickedOut","GLOBAL",1) MoveGlobal("AR0500","O#Bran",[4053.255])~ EXIT 
+!AreaCheck("AR1508")~ + @3 /* Of course. Wait for me in the Bridge District. */ DO ~SetGlobal("O#BranKickedOut","GLOBAL",1) MoveGlobal("AR0500","O#Bran",[4053.255])~ EXIT 
 + ~!AreaCheck("AR0301")
 !AreaCheck("AR0302")
 !AreaCheck("AR0303")
@@ -49,23 +49,23 @@ SAY ~We have fought well and we have fought bravely. Tempus willing, perhaps I w
 !AreaCheck("AR1102")
 !AreaCheck("AR1107")
 !AreaCheck("AR0801")
-!AreaCheck("AR0803")~ + ~Just wait for me here.~ DO ~SetGlobal("O#BranKickedOut","GLOBAL",1)~ EXIT
+!AreaCheck("AR0803")~ + @4 /* Just wait for me here. */ DO ~SetGlobal("O#BranKickedOut","GLOBAL",1)~ EXIT
 END
 
 // If you have kicked Branwen out and told her to wait right here or in the Bridge District, here's the dialogue she is going to have(remember, O#BranKickedOut is at 1).
 
 IF ~Global("O#BranKickedOut","GLOBAL",1)~ b3
-SAY ~By Tempus, you have returned! Are we to join again and fight as mighty warriors should? Say it is so!~
-++ ~I have. Please, join me.~ + b3.1
-++ ~Not at the moment.~ + b3.2
+SAY @5 /* By Tempus, you have returned! Are we to join again and fight as mighty warriors should? Say it is so! */
+++ @6 /* I have. Please, join me. */ + b3.1
+++ @7 /* Not at the moment. */ + b3.2
 END 
 
 IF ~~ b3.1
-SAY ~A triumphant day, indeed! I welcome your company once again!~
+SAY @8 /* A triumphant day, indeed! I welcome your company once again! */
 IF ~~ DO ~SetGlobal("O#BranKickedOut","GLOBAL",0) JoinParty()~ EXIT
 END
 
 IF ~~ b3.2
-SAY ~Too bad.~
+SAY @9 /* Too bad. */
 IF ~~ EXIT
 END
