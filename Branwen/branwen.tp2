@@ -12,7 +12,7 @@ BACKUP ~Branwen/Backup~
 
 AUTHOR ~Kulyok at http://forums.pocketplane.net~ // If the player gets an installation error, he'll know where to post his bug reports
 
-VERSION ~v6~  // This is not necessary, but recommended. A version number will be reflected in your Weidu.log. This way you will know which version a player with a bug report has installed. V4, v1alpha, v1.23 will work too.
+VERSION ~v7~  // This is not necessary, but recommended. A version number will be reflected in your Weidu.log. This way you will know which version a player with a bug report has installed. V4, v1alpha, v1.23 will work too.
 
 //you can put a readme call here. This will give the standard "Would you like to display the readme? [Y]es [N]o" question at the beginning of the install.
 README ~Branwen/Readme-Branwen.txt~
@@ -60,6 +60,7 @@ LANGUAGE ~English~ ~English~ ~Branwen/tra/English/setup.tra~ // This is an examp
 //The first entry is the name of the language displayed upon install. The second entry is the name of the folder the language files are in.
 //The path given is the one to all tra-files needed for installation (can be more than one, just list them one after the other in tildas (~)
 
+LANGUAGE ~Russian (by Jericho2)~ ~Russian~ ~Branwen/tra/Russian/setup.tra~ 
 
 BEGIN @1 /* Branwen BG2 NPC mod for players and modders */ // This is the name of your mod.
 

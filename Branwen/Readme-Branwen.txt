@@ -1,5 +1,5 @@
 			Branwen NPC MOD for Baldur's Gate II
-				   Version 6
+				   Version 7
 			  A Pocket Plane Group Project
 			   http://www.pocketplane.net
 
@@ -181,6 +181,9 @@ WeiDU					http://www.weidu.org
 -------------------
 6. Version History
 -------------------
+
+Version 7
+- Russian version by Jericho2
 
 Version 6
 - mod is now traified, by Austin.
