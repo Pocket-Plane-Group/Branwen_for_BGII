@@ -1,0 +1,78 @@
+/* Let's talk about traification a little bit. When a NPC mod is finished, most modders prefer to make it available to the translators - to have Kelsey or Xan available in different languages.
+
+How to do it? Simple: you need to copy Setup-Branwen.exe to Weidu.exe, place it to BG2 directory together with your dialogue file MyFile.d and run this command in your BG2 directory:
+ weidu.exe --traify MyFile.d --out MyFile.tra
+and do it for every file. 
+
+Then you need to place your .d files to Dialogue directory, and your .tra files - to English directory in your mod folder(you can also use Translations/English, if you want).
+Add these lines to your setup.tra, after VERSION and before BEGIN:
+
+AUTO_TRA ~Branwen/%s~
+LANGUAGE ~English~ ~English~ ~Branwen/English/Setup-Branwen.tra~
+
+But we are not going to do a full traification, that would make the files harder to read. We're just traifying the journal entries, because without these pretty lines, our journal entries won't work on BG2:EE. 
+I recommend using big numbers for journal entries, like @20000 - it means that there will be no @20000 line in any other file. Just in case. */
+
+
+@1    = ~Branwen BG2 NPC mod for players and modders~
+@2    = ~Branwen~
+@3    = ~By the ice breath of Auril! 'Tis good to see new faces and taste freedom again.~ [o#bran01]
+@4    = ~Tempus, forgive my cowardice.~ [o#bran02]
+@5    = ~I am proud to stand among such strong warriors.~ [o#bran04]
+@6    = ~Our actions are not those of warrior born.~ [o#bran05]
+@7    = ~What sort of craven cowards are we?~ [o#bran06]
+@8    = ~I can no longer honorably work with such as you.~ [o#bran07]
+@9    = ~I have always dreamt of leading such a worthy band.~ [o#bran08]
+@10   = ~I'm tired.~ [o#bran09]
+@11   = ~Damn the icicles of Auril. I'm BORED.~ [o#bran10]
+@12   = ~Tempus! Give us victory!~ [o#bran03]
+@15   = ~'Tis but a flesh wound.~ [o#bran11]
+@16   = ~I am always at ease in the forest. It reminds me of home.~
+@17   = ~By Tempus, I love the big city!~
+@18   = ~Danger is about. Be wary, friends.~
+@19   = ~Ah, I love traveling in fair weather.~
+@20   = ~I can't see a thing. Are we craven thieves that we do not sleep?~
+@21   = ~By Tempus' shield.~ [o#bran17]
+@22   = ~What is your command?~ [o#bran18]
+@23   = ~Hello?~ [o#bran19]
+@24   = ~'Tis a fine day to die.~ [o#bran20]
+@25   = ~If Tempus wills it.~ [o#bran21]
+@26   = ~By Valkur's mighty blade.~ [o#bran22]
+@27   = ~'Tis better to die on your feet, than live on your knees.~ [o#bran23]
+@28   = ~May Auril bestow the frost kiss upon our enemies.~ [o#bran24]
+@29   = ~By Valkur's strapping buttocks.~ [o#bran25]
+@30   = ~A god's favor is fickle, at best.~ [o#bran26]
+@31   = ~To die in battle is the most glorious death of all.~ [o#bran40]
+@32   = ~Tempus would guide your wayward soul, if you let him.~ [o#bran30]
+@33   = ~Tempus!~
+@34   = ~Argh!~
+@35   = ~Another weapon! Now!~
+@36   = ~I can carry no more. I had to drop it.~
+@37   = ~My spell!~
+@38   = ~When asked about her past, BRANWEN reveals that she left her home of Seawolf in the Norheim isles at an early age. She was apparently reviled by her own people for wanting to become a priest, a station reserved exclusively for the men of the village. She harbors no resentment, realizing that her faith must face such tests or be worthless. She traveled the coast, offering her services to local militias, and eventually came into the employ of an adventuring troup in the Nashkel area. Branwen had no idea that the group was participating in banditry, however, and on their first raid she balked at attacking a caravan of unarmed merchants. She rebelled, and a mage named Tranzig turned her to stone in the ensuing fight. Despite the unfavorable outcome, Branwen feels that Tempus views her actions approvingly. To attack those that are unarmed is the basest of villainy.~
+@39   = ~Branwen's Body~
+@40   = ~Branwen was captured by Bodhi and infected with vampirism, forcing you to slay her. There may be some way to revive her, though you do not know what it would be.~
+@41   = ~Branwen's Grandmother~
+@42   = ~After the events of the Throne of Bhaal were over, Branwen remained by her friends' side. Their new adventures together rivaled those of Drizzt himself, and indeed, if rumors were true, the famous drow ranger joined them once outside Silverymoon.
+
+Several years later, however, Branwen started yearning for home, and eventually decided to visit her old home village. A holy warrior and a high priestess of Tempus, she was greeted warmly by most of the townsfolk, and remained there for a while.
+
+But adventure beckoned, and soon Branwen joined her friends again, fighting for good and noble ends. Many men and women across the Realms would remember the fair-haired woman with a smile, often recalling her favourite saying: "By Tempus' shield!"~
+@43   = ~Branwen and <CHARNAME> would cross the Realms thrice over, from Kara-Tur to Norheim Isles. Ever together, they would battle dragons and tame demons, match wits with kings and drink with rascals.
+
+They would keep winning admiration of the common folk and respect of the underworld alike, and yet always they would have a moment for one another.
+
+Eventually Branwen and <CHARNAME> would settle down for a time, but some new adventure would always beckon, and, laughing, they would don their traveling garb and take to the road again.
+
+Indeed, many roads they would travel, and many more would be left to discover. "If Tempus wills it," Branwen would once again say with a smile, taking her lover's hand. "What is your command?"~
+
+// These are the entries for Bodhi abduction. If you'd like to see how they are used, please, take a look at O#BranJ.d file, but only after you've read simpler dialogue files.
+
+@100001 = ~The Final Battle with Bodhi.
+
+Bodhi appeared in an ambush shortly before I reached her haven, warning me that she was aware of my pursuit and stealing from me the one person that is dearest to my heart: Branwen.  Before she vanished and unleashed more of her undead creations upon me, Bodhi warned me that if I continue I will lose even more than I thought possible.  I cannot give up on the Rhynn Lanthorn... but now the life and immortal soul of the one I love is at stake, as well!~
+@100002 = ~The Final Battle with Bodhi.
+
+While I had feared for some time that Bodhi's final revenge on me would be to take away Branwen forever, it seems that the information in the lorebook was right... Amaunator's idol has restored Branwen not only to life, but has removed the vampiric curse from her, as well.~
+
+// Setup-MyMod.tra is also used for item descriptions, the NPC's soundset, and various character names. If you're going to write a more complex mod with quests and new items, look at Xan's code for various examples.
