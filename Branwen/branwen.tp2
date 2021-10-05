@@ -62,6 +62,8 @@ LANGUAGE ~English~ ~English~ ~Branwen/tra/English/setup.tra~ // This is an examp
 
 LANGUAGE ~Russian (by Jericho2)~ ~Russian~ ~Branwen/tra/Russian/setup.tra~ 
 
+LANGUAGE ~French (by Shamou, JohnBob and jazira)~ ~French~ ~Branwen/tra/French/setup.tra~
+
 BEGIN @1 /* Branwen BG2 NPC mod for players and modders */ // This is the name of your mod.
 
 // These two lines were created by CamDawg. It's a new state that checks if NPC is able to talk. USE this in your mod. See the dialogue for details.
