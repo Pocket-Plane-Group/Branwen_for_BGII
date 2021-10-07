@@ -17,7 +17,7 @@ I recommend using big numbers for journal entries, like @20000 - it means that t
 @1    = ~Branwen BG2 NPC mod pour joueurs et moddeurs~
 @2    = ~Branwen~
 @3    = ~Ouh ! Par le souffle glacé d'Aurile ! C'est bien bon de voir de nouveaux visages et de goûter à nouveau à la liberté.~ [o#bran01]
-@4    = ~Tempus, excusez ma lacheté.~ [o#bran02]
+@4    = ~Tempus, excusez ma lâcheté.~ [o#bran02]
 @5    = ~Je suis fière de me trouver parmi des guerriers de votre qualité.~ [o#bran04]
 @6    = ~(Soupir) Nos agissements ne sont pas dignes de vrais guerriers.~ [o#bran05]
 @7    = ~Mais quel groupe de poltrons nous formons ?~ [o#bran06]
@@ -29,7 +29,7 @@ I recommend using big numbers for journal entries, like @20000 - it means that t
 @15   = ~Ohh ! Hmm, ce n'est qu'une blessure superficielle !~ [o#bran11]
 @16   = ~J'ai toujours apprécié la forêt. Ça me rappelle ma contrée.~
 @17   = ~Par Tempus, j'aime cette grande cité !~
-@18   = ~Le danger est proche, preparez-vous mes amis.~
+@18   = ~Le danger est proche, préparez-vous mes amis.~
 @19   = ~Ah, J'aime voyager par beau temps.~
 @20   = ~Il fait trop sombre. Sommes-nous des petits voleurs pour être encore debout ?~
 @21   = ~Au nom du bouclier de Tempus !~ [o#bran17]
@@ -51,9 +51,9 @@ I recommend using big numbers for journal entries, like @20000 - it means that t
 @37   = ~Mon sort !~
 @38   = ~Interrogée sur son passé, BRANWEN dit avoir quitté très tôt son foyer, Loup de mer, sur les îles Norheim. Il semble que son peuple lui vouait une haine farouche parce qu'elle souhaitait devenir prêtre, activité réservée aux seuls hommes de son village. Plutôt que d'en demeurer aigrie, elle considère que cette épreuve avait pour but de tremper sa foi. Elle a suivi la côte, en offrant ses services aux milices locales, avant d'intégrer une compagnie d'aventuriers qui opérait autour de Nashkel. Mais elle ignorait qu'il s'agissait de brigands : dès le premier pillage, elle a refusé d'attaquer un convoi marchand désarmé et s'est rebellée, si bien qu'un mage appelé Tranzig l'a changée en pierre. En dépit de cet incident, Branwen pense que Tempus l'approuve, attaquer un adversaire désarmé étant pour lui le comble de la bassesse.~
 @39   = ~Le corp de Branwen~
-@40   = ~Branwen was captured by Bodhi and infected with vampirism, forcing you to slay her. There may be some way to revive her, though you do not know what it would be.~
+@40   = ~Branwen a été capturée par Bodhi et transformée en vampire, vous obligeant à la tuer. Il y a peut-être un moyen de la ressusciter, malheureusement vous ne savez pas lequel.~
 @41   = ~La grand-mère de Branwen~
-@42   = ~Une fois les événements du Trône de Bhaal terminés, Branwen resta aux côtés de ses compagnons. Leurs nouvelles aventures rivalisaient avec celles de Drizzt lui-même, et selon les rumeurs, le célèbre rôdeur les aurais rejoints une fois outside Silverymoon.
+@42   = ~Une fois les événements du Trône de Bhaal terminés, Branwen resta aux côtés de ses compagnons. Leurs nouvelles aventures rivalisaient avec celles de Drizzt lui-même, et selon les rumeurs, le célèbre rôdeur les aurais rejoints une fois, près de Lunargent.
 
 Des années plus tard, Branwen eut envie de rentrer chez elle, et décida de visiter son village natal. Guerrière sainte et grande prêtresse de Tempus, elle fut accueillie chaleureusement par la plupart des habitants et y demeuras pour un temps.
 
