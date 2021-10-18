@@ -11,7 +11,7 @@
 @10   = ~Parce que j'espère t'amener un jour à la Lumière, Dorn. Même si tu me fais chier, tu restes un bon guerrier.~
 @11   = ~Ha ! Tu peux toujours attendre, femme.~
 @12   = ~On devrait boire un coup un jour, en l'honneur du passé et des jours à venir, se jeter dans une bonne bagarre, frapper quelques tibias, avoir du bon temps, quoi. Qu'est-ce que t'en dis ?~
-@13   = ~J'aimerais bien. On devrait emmener <CHARNAME>, je trouve qu'<PRO_HESHE> n'a pas l'air bien.~
+@13   = ~J'aimerais bien. On devrait emmener <CHARNAME>, je trouve qu'il n'a pas l'air bien.~ ~J'aimerais bien. On devrait emmener <CHARNAME>, je trouve qu'elle n'a pas l'air bien.~
 @14   = ~Un bon combat à mort sanguinolant devrait lui faire du bien.~
 @15   = ~Pas qu'à <CHARNAME>. Toi aussi, t'as l'air tendu. Même le mal doit se relâcher de temps en temps, hein !~
 @16   = ~1-0 pour toi...~
@@ -66,7 +66,7 @@
 @65   = ~Les hommes et femmes de foi ne sont-ils pas supposés respecter les vieilles prophéties et les messagers sacrés ?~
 @66   = ~Pas quand c'est la vie de mes amis qui est en jeu ! Je vais te dire, Neera. Invoque des tourbillons sauvages, j'apporte mon marteau et la prochaine fois qu'on voit ce Solaire apparaître et qu'il essaie de nous endormir, on lui fera la leçon. On joue pas avec nous.~
 @67   = ~Haha ! J'aime bien ta manière de penser. Tu crois qu'on doit impliquer <CHARNAME> dans notre projet ?~
-@68   = ~Nan, <PRO_HESHE> nous entend de toute façon.~
+@68   = ~Nan, il nous entend de toute façon.~ ~Nan, elle nous entend de toute façon.~
 @69   = ~Alors on a un plan. À moins qu'on soit à nouveau endormis quand Solaire apparaîtra.~
 @70   = ~OK pour le plan.~
 @71   = ~Un moine soucieux et une prêtresse nordique sont à nouveau ensemble, marchant aux côtés d'un enfant de Bhaal. C'est le deuxième tome de la sage, pas vrai, Rasaad ?~
