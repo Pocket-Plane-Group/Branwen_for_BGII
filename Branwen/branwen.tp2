@@ -62,13 +62,15 @@ LANGUAGE ~English~ ~English~ ~Branwen/tra/English/setup.tra~ // This is an examp
 
 LANGUAGE ~Russian (by Jericho2)~ ~Russian~ ~Branwen/tra/Russian/setup.tra~ 
 
+LANGUAGE ~French (by Shamou, JohnBob and jazira)~ ~French~ ~Branwen/tra/French/setup.tra~
+
 BEGIN @1 /* Branwen BG2 NPC mod for players and modders */ // This is the name of your mod.
 
 // These two lines were created by CamDawg. It's a new state that checks if NPC is able to talk. USE this in your mod. See the dialogue for details.
 APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~
 UNLESS ~CD_STATE_NOTVALID~
 
-COPY ~Branwen/Audio~ ~override~ // All Branwen's audio files are in the game now, and we'll hear them when she talks.
+COPY ~Branwen/Audio/%LANGUAGE%~ ~override~ // All Branwen's audio files are in the game now, and we'll hear them when she talks.
 
 // I am going to use my prefix now. For the purposes of this mod, it is going to be O#. DON'T USE IT, REGISTER YOUR OWN!
 // Go here: http://forums.blackwyrmlair.net/index.php?showtopic=113 - the list of prefixes is in the first post of the thread. Use it in ALL your files and ALL variables.

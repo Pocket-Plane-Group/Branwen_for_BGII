@@ -1,0 +1,223 @@
+@0    = ~Parle plus fort, ma p'tite ! Pourquoi tu marmonnes et bégaies tout le temps ?~
+@1    = ~C'est pas vrai !~
+@2    = ~Toi aussi !~
+@3    = ~Si !~
+@4    = ~Non !~
+@5    = ~Non, non, non ! Et tu es trop grande, trop bruyante et tu pues des pieds quand t'enlèves tes énormes bottes ! Voilà !~
+@6    = ~Ha ! Quand tu veux, tu peux être une vraie lionne, ma p'tite.~
+@7    = ~Tu es un bon guerrier. Je le respecte.~
+@8    = ~Je vous remercie de ces belles paroles.~
+@9    = ~Pourrais-je tenir votre marteau de temps en temps ?~
+@10   = ~Vous pourrez.~
+@11   = ~D'accord, je reviendrai vers toi à ce sujet alors.~
+@12   = ~Branwen, tu en connais un rayon en médecine. Pourquoi ne deviens-tu pas guérisseuse au lieu de guerrière ?~
+@13   = ~Ce serait une insulte à mon honneur ! Moi, assis à la maison comme une poissonière aveugle ? Jamais de la vie !~
+@14   = ~Qu'en est-il de vos enfants ? Vont-ils grandir sans attention comme des mauvaises herbes, ne voyant leur mère qu'entre deux croisades ?~
+@15   = ~Si j'en ai, ils seront des guerriers solides comme leur père. Honorables et courageux. Personne, en dehors de Tempus, ne pourra faire rester mes enfants à la maison.~ ~Si j'en ai, ils seront des guerriers solides comme leur mère. Honorables et courageux. Personne, en dehors de Tempus, ne pourra faire rester mes enfants à la maison.~
+@16   = ~Il y a sans doute du vrai dans ce que tu dis.~
+@17   = ~Nan, t'as raison, druide. Des jeunes filles seraient heureuses d'entendre tes mots. Pas moi. Et pas toi.~
+@18   = ~C'est pas faux.~
+@19   = ~Mage ! Arrête de me voler des herbes !~
+@20   = ~Qui, moi ? Vous devez faire erreur, ma bonne dame. (Elle est myope comme une taupe ! Comment croire qu'elle ait remarqué quelque chose ?)~
+@21   = ~Tu utilises mes herbes pour tes sorts, pas vrai ? Tant mieux pour toi, mais tu m'en dois une pour les avoir récoltées.~
+@22   = ~Cependant, je prendrai peut-être une autre alternative de paiement cette fois-ci...~
+@23   = ~Q-QUOI ? (Elle peut pas penser à ça. Elle peut pas penser à ÇA. Pas possible.)~
+@24   = ~C'était une blague, abruti ! Par Tempus, t'es aussi rouge que ta robe !~
+@25   = ~Grrrrr... (Boule de feu. Boule de feu. Boule de feu !)~
+@26   = ~Dites-moi, chérie, pourquoi aimez-vous autant les fils dorés ?~
+@27   = ~Pourquoi ? Tu trouves ça moche ?~
+@28   = ~Pas pour ce barde, non. Mais votre tenue ne peut résister à une météo rude et dangereuse, assurément ?~
+@29   = ~Je peux toujours acheter une nouvelle tunique. Mais j'aime tellement briller, la laisser me caresser la peau, sourire et être remarqué. C'est pas ton cas ?~
+@30   = ~Par chance, tu es plus sage que tu n'y parais.~
+@31   = ~Là-dessus, barde, tu t'es joyeusement trompé.~
+@32   = ~Imoen, qu'est-ce que tu... attends, tu portes mon rouge à lèvres ? Et mon gloss ? Et ma... sous-tunique ?~
+@33   = ~C'est à dire qu'Irenicus ne m'a pas donné d'affaires de rechange...~
+@34   = ~Ma pauvre ! Tiens, j'ai aussi de nouveaux sous-vêtements pour toi...~
+@35   = ~Oh, Branwen, je ne faisais que te taquiner. <CHARNAME> m'a apporté tout ce dont j'avais besoin. J'aime juste... bien ton rouge à lèvre.~
+@36   = ~Par Tempus ! Oh, garde-le, ma p'tite. Mes lèvres sont de toute façon plus jolies que les tiennes.~
+@37   = ~Eh ! Attends une minute !~
+@38   = ~Ça va, Branwen ? Tu sembles avoir souvent la tête ailleurs, en ce moment.~
+@39   = ~Ce sont les épreuves de <CHARNAME>. Torture, enfermement, sombres visions... Il agit comme un adulte maintenant.~ ~Ce sont les épreuves de <CHARNAME>. Torture, enfermement, sombres visions... Elle agit comme une adulte maintenant.~
+@40   = ~Il en est un.~ ~Elle en est une.~
+@41   = ~Et il a besoin d'une femme forte à ses côtés, pas vrai ?~ ~Et elle a besoin d'une femme forte à ses côtés, pas vrai ?~
+@42   = ~Tant qu'il se tient à distance des ténèbres.~ ~Tant qu'elle se tient à distance des ténèbres.~
+@43   = ~Il le fera.~ ~Elle le fera.~
+@44   = ~C'est bizarre comme peu de temps a passé. Seulement un an. Et maintenant, Tranzig, mon ravisseur, est mort, Khalid est tombé, et <CHARNAME> est un enfant de Bhaal. Tant de pertes...~ ~C'est bizarre comme peu de temps a passé. Seulement un an. Et maintenant, Tranzig, mon ravisseur, est mort, Khalid est tombé, et <CHARNAME> est une enfant de Bhaal. Tant de pertes...~
+@45   = ~Et de regrets.~
+@46   = ~On s'en remettra. Par le bouclier de Tempus !~
+@47   = ~Branwen ! Est-ce que tu as une grande famille ?~
+@48   = ~Bof. Deux de mes frères sont soldats. Un autre est pêcheur. Mais on se parle pas. Pas depuis...~
+@49   = ~Ouais, les désagrément ancestraux de choisir une profession ! Oncle Scratchy s'est brûlé une fois. Sa fiancée, Leticia, a décidé de devenir une manager des ventes dans une ville drow. De manière surprenante, ses ventes de navet ont explosé. Mais pas pour longtemps.~
+@50   = ~Pourquoi ça ?~
+@51   = ~Ne te fie jamais à un illithid. Ces démons tentaculaires ont bouffé l'ensemble.~
+@52   = ~Jan, c'est horrible !~
+@53   = ~J'te l'avais dit. Le plan de carrière, c'est la clé.~
+@54   = ~Vous semblez être une jeune femme raisonnable et honorable, Branwen.~
+@55   = ~Oh, merci mon bon monsieur ! C'est un grand honneur d'être complimentée par quelqu'un comme vous.~
+@56   = ~Pourtant, votre attitude envers les jeunes hommes est parfois... inconvenante. Avez-vous remarqué à quel point vous êtes libérée dans vos affections ?~
+@57   = ~Sire Keldorn ! Vous êtes un homme marié qui a élevé deux filles ! Comment pouvez-vous dire de telles choses à l'innocente jeune femme que je suis ?~
+@58   = ~Mes excuses, Branwen, mais parfois la vérité doit être dite.~
+@59   = ~Non. Non, ça ne doit pas ! Je vais juste partir et pleurer jusqu'à trouver le sommeil... me rouler en boule dans un coin sombre...~
+@60   = ~Je vous en prie, Branwen, vous ne devez pas le prendre trop sérieusement. Juste un petit changement dans votre comportement...~
+@61   = ~Hahaha ! Je t'ai eu, le vieux !~
+@62   = ~(Soupir) Torm, aide moi.~
+@63   = ~J'adore la manière avec laquelle tu lui as arraché la tête dans la dernière bataille !~
+@64   = ~Har !~
+@65   = ~Ses entrailles volaient dans tous les sens comme des saucisses ! Je dois avouer, ça m'a donné faim.~
+@66   = ~Moi aussi.~
+@67   = ~Ah oui ? Ça te dit qu'on se fasse une bière et du porc ? Je vais voir ce qu'on peut faire.~
+@68   = ~(Rote) Vas-y, envoie !~
+@69   = ~Mazzy, pourquoi tu n'arrêtes pas de regarder les hommes humains ?~
+@70   = ~Pardon ?~
+@71   = ~Ils sont deux fois plus grand que toi ! Ce serait comme bercer un enfant ! Et que deviendraient tes reins, si tu portais un enfant humain ?~
+@72   = ~Branwen, je ne suis pas une salace, une souillon ! Je parle aux gens !~
+@73   = ~Hmph. Peut-être, mais je suis pas née d'hier. J'ai noté ton regard, ma sœur.~
+@74   = ~Ouais, bah garde tes « notes » pour toi.~
+@75   = ~Minsc, mon bon ami ! On est de nouveau ensemble !~
+@76   = ~Eh oui ! Chantons !~
+@77   = ~De l'îlot vers les rapides  
+Qui s'élancent, mugissants,
+Les esquifs colorés fendent
+Les flots du fleuve puissant.~
+@78   = ~A l'avant, Stenka Razine
+Assis près de sa beauté,
+Célébrait ses épousailles,
+Tout à boire et à chanter.~
+@79   = ~A l'arrière l'on murmure :
+« Voilà qu'après une nuit,
+Il mollit et nous préfère
+Cette femme auprès de lui ! »~
+@80   = ~Stenka Razin le redoutable
+Les entendant persifler,
+Saisit sa gracieuse épouse
+Qui se met à chanceler~
+@81   = ~Ses sourcils sombres se froncent,
+Et ses yeux incandescents
+Ont la teinte de l'orage
+Et sont injectés de sang.~
+@82   = ~« C'est mon honneur que j'engage,
+Et ma tête s'il le faut ! »
+Rugit-il, et sa voix gronde,
+Et résonne au bord de l'eau.~
+@83   = ~Bouh dit qu'il est fatigué maintenant, amie Branwen. On chantera le reste plus tard ?~
+@84   = ~Volontiers !~
+@85   = ~Branwen, que fais-tu pour aider les moins fortunés ? À part massacrer des gobelins, j'entends.~
+@86   = ~Ces gobelins font main basse sur les récoltes et même parfois sur des enfants innocents, petite sotte ! Sans aventuriers et miliciens, des villages entiers seraient morts !~
+@87   = ~Oui, mais c'est ce que je dis, pas vrai ? Si ces gens avaient assez d'argent pour payer des gardes, leurs enfants et leurs récoltes n'auraient pas à souffrir !~
+@88   = ~Personne ne peut être à l'abri nuit et jour. Même le roi peut être assassiné dans sa chambre.~
+@89   = ~À moins que quelqu'un ne massacre ses gardes et ses mages de bataille, il est à l'abri. Contrairement aux moins fortunés que je défends !~
+@90   = ~Combien y a-t-il de moins fortunés, gamine ? Je dirais que s'ils se regroupaient, aucun garde ne pourrait sauver ce roi.~
+@91   = ~Tes cheveux sont superbes dans cette lumière, Branwen.~
+@92   = ~Merci. C'est rare un compliment venant de toi, mon amie.~
+@93   = ~Je ne parle que rarement pour rien dire.~
+@94   = ~Je comprends. Mes parents me manquent beaucoup aussi.~
+@95   = ~Ils sont morts ?~
+@96   = ~Oui. Tu veux que je t'en dises plus sur eux ?~
+@97   = ~Je... Oui, vas-y.~
+@98   = ~Ma mère est née en plein été et on disait que le soleil ne quittait jamais ses cheveux. Mon père était un bûcheron, un rôdeur assez semblable à toi. Un homme bon. Quand je suis née, il m'a pris dans ses bras et a pleuré...~
+@99   = ~Viconia, je te respecte.~
+@100  = ~Vraiment ? Pourquoi ?~
+@101  = ~Tu as presque été brulée, très probablement violée et très proche d'être tuée. Ça doit être douloureux mais tu as persévéré et tu es devenue plus forte.~
+@102  = ~Shar guide ma main.~
+@103  = ~Et Tempus guide la mienne. J'espère que nous ne deviendrons jamais ennemies.~
+@104  = ~Peut-être un jour, je suppose. Mais pas aujourd'hui.~
+@105  = ~Ta maison te manque, Yoshimo ?~
+@106  = ~Bien sûr ! C'est pareil pour tous les ronin et samouraïs. Particulièrement au printemps, avec tous les cerisiers en fleur.~
+@107  = ~J'aimerais bien visiter Kara-Tur un jour.~
+@108  = ~Alors tu le feras ! Une fière femme comme toi ne laissera pas une petite distance l'arrêter. Soyez juste prudente sur la route : ces routes sont pleines de brigands.~
+@109  = ~Et d'autres saletés. Mais j'ai la faveur de Tempus, la vérité et l'honneur. Je verrai Kara-Tur, Yoshimo.~
+@110  = ~Peut-être un jour le verra-t-on ensemble ?~
+@111  = ~Ha, t'es un vrai mufle, Yoshimo ! Je dois avouer que je t'ai pas vu venir.~
+@112  = ~Je fais de mon mieux.~
+@113  = ~Edwin, quelqu'un t'as déjà dit que tu as une très jolie voix ?~
+@114  = ~Heu. Vraiment ? (Elle a enfin remarqué !)~
+@115  = ~En effet. Et ces douces, douces mains...~
+@116  = ~Oui ?~
+@117  = ~Mon cœur bat plus vite quand je pense à toutes les merveilleuses choses que ces doigts habiles peuvent faire...~
+@118  = ~Ouiiiiiiii ?~
+@119  = ~Tu pourras éplucher les patates pour le ragoût ?~
+@120  = ~Salope.~
+@121  = ~Imoen ! T'as pris ma serviette à nouveau ! Et tu ne l'as même pas bien plié ! Elle est roulée en boule et est toujours humide !~
+@122  = ~Roh, arrête de crier. Crier ne la fera pas sécher, tu sais.~
+@123  = ~Par le cul poilu de Tempus, qu'est-ce qui la fera sécher, alors ?~
+@124  = ~Attends, laisse moi... Oooougeli bugeli !~
+@125  = ~tu vois ? Juste un petit sort et elle est fraiche et sèche, comme neuve.~
+@126  = ~Hmph. Merci, Imoen mais qu'est-ce qui t'as empêché de le faire juste après l'avoir utilisée ?~
+@127  = ~Ah... euh... J'ai oublié ?~
+@128  = ~Et tu penses que ces jolies petites fossettes vont t'aider, alors ? Raaaaaaaaah ! La prochaine fois, je le dirai à <CHARNAME>. Je suis sûre que sa serviette a déjà souffert de tes attaques. On planifiera notre vengeance ensemble.~
+@129  = ~Mais c'est bien trop cruel ! Je suis clairement calomnié là ! <CHARNAME>, au secours !~
+@130  = ~Je comprends vraiment pas, Jaheira. Pourquoi tu portes ces tresses ? On dirait une bohémienne !~
+@131  = ~Dis une femme qui porte bien trop de trucs dorés.~
+@132  = ~C'est vrai ! Et ça me rend plus belle, tu trouves pas ?~
+@133  = ~Branwen, je suis habituée au confort. Les cheveux longs peuvent être utilisés contre toi dans une bataille. Personne ne t'a montré ça ?~
+@134  = ~...~
+@135  = ~Je... oui. Une fois. Je me souviens. Ça fait mal.~
+@136  = ~Oublie ce que j'ai dit précédemment. Tu es très jolie avec tes tresses.~
+@137  = ~Et toi. Je dis parfois des choses sous le coup de la colère. Je ne les pense pas forcément.~
+@138  = ~Alors je déclare la paix de Tempus ! À boire ?~
+@139  = ~Ce soir.~
+@140  = ~On finit la chanson, ami Minsc ?~
+@141  = ~« Volga, Volga, mère Volga,          
+Volga, fleuve de Russie,
+Tu attendais une offrande
+D'un cosaque ? La voici.~
+@142  = ~Puisque entre des hommes libres
+Tout procès serait malsain,
+Volga, Volga, ô ma mère,
+Reçois ma belle en ton sein ! »~
+@143  = ~Minsc ne peut pas continuer ! Il pleure !~
+@144  = ~D'un bras puissant il soulève
+La princesse aux beaux cheveux,
+Par-dessus bord il la jette
+Dans le flot impétueux.~
+@145  = ~Maintenant, un silence de tombe tombe      
+Sur tous ceux présents et temoins,          
+Et le fier guerrier cosaque                                
+S'effondre à genou pour pleurer.~
+@146  = ~« Quelle est cette triste mine,
+Compagnons, pas de soupirs !
+Entonnons un chant de liesse,
+Honorons son souvenir. »~
+@147  = ~Regarde ce que t'as fait ! Même les petits favoris de Bouh tremblent !~
+@148  = ~Ouais, bien chanté. Devrait-on noyer ton hamster ensuite ? Ha ! C'était juste une blague, mon ami Minsc, me regarde pas comme ça.~
+@149  = ~Viens, Bouh, écartons nous de cette dame pas si sympa. La prochaine fois qu'elle voudra la compagnie d'un hamster, on la fera supplier.~
+@150  = ~Parfois, Minsc, tu peux être franchement obscène.~
+@151  = ~Viconia, pourquoi on partagerait pas un godet ?~
+@152  = ~Tu... boirais avec moi ?~
+@153  = ~Ouais, avec plaisir ! La plus forte bière qu'on puisse trouver !~
+@154  = ~On va voir si tu peux tenir le coup, abbil.~
+@155  = ~Tu viens de m'appeler « amie » ?~
+@156  = ~Non.~
+@157  = ~C'est bien ce qu'il me semblait.~
+@158  = ~Alors, prêtresse, tu espères devenir une élue de ton stupide dieu ? (Je me doute qu'elle ne peut pas viser plus haut. Ces singes sont amusants.)~
+@159  = ~Tu es un fou hérétique, Edwin, pour parler aussi peu prudemment au Seigneur des Batailles. Sa colère est grande et mon marteau n'est qu'à quelques centimètres de tes doigts...~
+@160  = ~Et mes doigts me réclament une boule de feu !~
+@161  = ~Qui te prendrait 2 secondes à incanter. Mon marteau est déjà prêt. Ce serait dommage de priver ce groupe d'un mage capable, mais Tempus ne supporte aucun affront à son honneur et sa volonté sera faite.~
+@162  = ~D'accord, d'accord ! Je... suis désolé.~
+@163  = ~Vraiment ?~
+@164  = ~Oui ! Maintenant tais-toi et marche !~
+@165  = ~T'es rusée, pas vrai ?~
+@166  = ~Qu'est-ce que tu veux dire, Branwen ?~
+@167  = ~T'es une vraie petite renarde, je veux dire. J'ai noté ton regard quand je rangeais mon sac. Tu peux bien être souriante et innocente, mais tu es une voleuse accomplie, petite Iomen. J'étais stupide d'en douter.~
+@168  = ~Heh. Qui remarquerait ma petite personne ? Mais rassure toi, ton sac est en sécurité, Branwen.~
+@169  = ~Parce qu'il n'y a rien d'intéressant pour toi là-dedans.~
+@170  = ~Oui, aussi.~
+@171  = ~Branwen, qu'y a-t-il ? Tu sembles déprimée.~
+@172  = ~Ces pins autour d'Athkatla... C'est un rare spectacle. Ça m'a rappelé la maison.~
+@173  = ~Amn n'est pas loin de Téthyr. Je vois des rappels de ma maison tous les jours.~
+@174  = ~Tu as de la chance.~
+@175  = ~Tu crois vraiment ?~
+@176  = ~Non... j'ai parlé trop vite. Excuse moi, Jaheira.~
+@177  = ~La maison est où se situe ton cœur, Branwen. J'espère que ton cœur trouvera la sienne.~
+@178  = ~Branwen ! Bouh demande, t'as des noix ?~
+@179  = ~Hmm. Je dois avouer, j'en ai. Tiens, prends en quelques unes, petit Bouh.~
+@180  = ~Merci ! Oooh, Dynaheir avait l'habitude de toujours avoir des noix pour nous dans son sac. Comme au bon vieux temps, pas vrai, Bouh ?~
+@181  = ~De rien, Minsc et Bouh. Dynaheir vous manque, à tous les deux ?~
+@182  = ~Oh oui ! Mais elle voudrait que l'on reste fort, alors on l'est.~
+@183  = ~Continue comme ça, Minsc. Continue comme ça.~
+@184  = ~Alors, abbil, dis moi la vérité : quel type d'homme te plaît ? ~ ~Alors, abbil, dis moi la vérité : quel type de femme te plaît ? ~
+@185  = ~Les grands. Les durs. Gros bras et mains douces.~ ~Les grandes. Les fortes. Musclée et mains douces.~
+@186  = ~Ha ! Et qu'en est-il de ton précieux honneur ?~
+@187  = ~Je dois avouer, je ne coucherais pas volontiers avec une ordure, mais si j'avais vraiment faim de caresses...~
+@188  = ~Ha ! Tu cèderais honteusement et tu lécherais ses bottes comme une bonne salope !~
+@189  = ~Hmph. Tu es un vrai rayon de soleil parfois, tu le sais ça ?~

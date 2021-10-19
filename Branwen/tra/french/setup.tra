@@ -1,0 +1,176 @@
+/* Let's talk about traification a little bit. When a NPC mod is finished, most modders prefer to make it available to the translators - to have Kelsey or Xan available in different languages.
+
+How to do it? Simple: you need to copy Setup-Branwen.exe to Weidu.exe, place it to BG2 directory together with your dialogue file MyFile.d and run this command in your BG2 directory:
+ weidu.exe --traify MyFile.d --out MyFile.tra
+and do it for every file. 
+
+Then you need to place your .d files to Dialogue directory, and your .tra files - to English directory in your mod folder(you can also use Translations/English, if you want).
+Add these lines to your setup.tra, after VERSION and before BEGIN:
+
+AUTO_TRA ~Branwen/%s~
+LANGUAGE ~English~ ~English~ ~Branwen/English/Setup-Branwen.tra~
+
+But we are not going to do a full traification, that would make the files harder to read. We're just traifying the journal entries, because without these pretty lines, our journal entries won't work on BG2:EE. 
+I recommend using big numbers for journal entries, like @20000 - it means that there will be no @20000 line in any other file. Just in case. */
+
+
+@1    = ~Branwen BG2 NPC mod pour joueurs et moddeurs~
+@2    = ~Branwen~
+@3    = ~Ouh ! Par le souffle glacé d'Aurile ! C'est bien bon de voir de nouveaux visages et de goûter à nouveau à la liberté.~ [o#bran01]
+@4    = ~Tempus, excusez ma lâcheté.~ [o#bran02]
+@5    = ~Je suis fière de me trouver parmi des guerriers de votre qualité.~ [o#bran04]
+@6    = ~(Soupir) Nos agissements ne sont pas dignes de vrais guerriers.~ [o#bran05]
+@7    = ~Mais quel groupe de poltrons nous formons ?~ [o#bran06]
+@8    = ~Je ne peux plus m'associer à des gens de votre espèce, ce serait indécent.~ [o#bran07]
+@9    = ~J'ai toujours rêvé d'être à la tête d'un groupe aussi honorable.~ [o#bran08]
+@10   = ~(Soupir) Je suis fatiguée.~ [o#bran09]
+@11   = ~Au diable les glaçons d'Aurile ! Je M'ENNUIE !~ [o#bran10]
+@12   = ~Tempus ! Accordez-nous la victoire !~ [o#bran03]
+@15   = ~Ohh ! Hmm, ce n'est qu'une blessure superficielle !~ [o#bran11]
+@16   = ~J'ai toujours apprécié la forêt. Ça me rappelle ma contrée.~
+@17   = ~Par Tempus, j'aime cette grande cité !~
+@18   = ~Le danger est proche, préparez-vous mes amis.~
+@19   = ~Ah, J'aime voyager par beau temps.~
+@20   = ~Il fait trop sombre. Sommes-nous des petits voleurs pour être encore debout ?~
+@21   = ~Au nom du bouclier de Tempus !~ [o#bran17]
+@22   = ~Vos désirs sont des ordres.~ [o#bran18]
+@23   = ~Bonjour ?~ [o#bran19]
+@24   = ~Journée idéale pour mourir.~ [o#bran20]
+@25   = ~Si c'est la volonté de Tempus !~ [o#bran21]
+@26   = ~Par la lame toute-puissante de Valkur !~ [o#bran22]
+@27   = ~Il vaut mieux mourir debout que vivre à genoux !~ [o#bran23]
+@28   = ~Puisse Aurile poser son baiser glacé sur l'ennemi.~ [o#bran24]
+@29   = ~Au nom du gros derrière de Valkur !~ [o#bran25]
+@30   = ~Les faveurs divines sont au mieux éphémères.~ [o#bran26]
+@31   = ~Mourir sur le champ de bataille est la mort la plus digne.~ [o#bran40]
+@32   = ~Tempus accepterait de guider votre âme rebelle, si vous le laissiez faire.~ [o#bran30]
+@33   = ~Tempus !~
+@34   = ~Argh !~
+@35   = ~Une autre arme ! Vite !~
+@36   = ~Je ne peux plus rien porter. Un objet est tombé au sol.~
+@37   = ~Mon sort !~
+@38   = ~Interrogée sur son passé, BRANWEN dit avoir quitté très tôt son foyer, Loup de mer, sur les îles Norheim. Il semble que son peuple lui vouait une haine farouche parce qu'elle souhaitait devenir prêtre, activité réservée aux seuls hommes de son village. Plutôt que d'en demeurer aigrie, elle considère que cette épreuve avait pour but de tremper sa foi. Elle a suivi la côte, en offrant ses services aux milices locales, avant d'intégrer une compagnie d'aventuriers qui opérait autour de Nashkel. Mais elle ignorait qu'il s'agissait de brigands : dès le premier pillage, elle a refusé d'attaquer un convoi marchand désarmé et s'est rebellée, si bien qu'un mage appelé Tranzig l'a changée en pierre. En dépit de cet incident, Branwen pense que Tempus l'approuve, attaquer un adversaire désarmé étant pour lui le comble de la bassesse.~
+@39   = ~Le corp de Branwen~
+@40   = ~Branwen a été capturée par Bodhi et transformée en vampire, vous obligeant à la tuer. Il y a peut-être un moyen de la ressusciter, malheureusement vous ne savez pas lequel.~
+@41   = ~La grand-mère de Branwen~
+@42   = ~Une fois les événements du Trône de Bhaal terminés, Branwen resta aux côtés de ses compagnons. Leurs nouvelles aventures rivalisaient avec celles de Drizzt lui-même, et selon les rumeurs, le célèbre rôdeur les aurais rejoints une fois, près de Lunargent.
+
+Des années plus tard, Branwen eut envie de rentrer chez elle, et décida de visiter son village natal. Guerrière sainte et grande prêtresse de Tempus, elle fut accueillie chaleureusement par la plupart des habitants et y demeuras pour un temps.
+
+Mais l'appel de l'aventure se fit entendre, et Branwen retrouva vite ses compagnons, combattant pour de bonnes causes et de nobles desseins. Beaucoup d'hommes et de femmes à travers les royaumes se souviennent cette femme souriante aux cheveux clairs, se remémorant régulièrement ses paroles « Au nom du bouclier de Tempus ! ».~
+@43   = ~Branwen et <CHARNAME> allaient parcourir les royaumes plusieurs fois, de Kara-Tur aux îles Norheim. Toujours ensemble, ils combattront des dragons et soumettront des démons, rivalisant avec des rois et festoyant avec des vauriens.
+
+Ils continueraient à gagner l'admiration des peuple et le respect des mondes souterrains, et malgré tout, auraient toujours un moment pour l'autre.
+
+Branwen et <CHARNAME> finirent par s'installer, pour un temps seulement, une nouvelle aventure les trouvait toujours et, en riant, ils préparaient leurs affaires et reprenaient la route.
+
+En effet, de nombreuses routes ont été parcourues et beaucoup d'autres allaient être découvertes « Si c'est la volonté de Tempus », dit encore une fois Branwen avec un sourire, en prenant la main de son amant. « Quels sont tes desirs ? »~
+
+// These are the entries for Bodhi abduction. If you'd like to see how they are used, please, take a look at O#BranJ.d file, but only after you've read simpler dialogue files.
+
+@100001 = ~La bataille final contre Bodhi.
+
+Bodhi est apparue dans une embuscade peu avant que j'atteigne son antre, me prévenant qu'elle savait ce que je faisais et qu'elle ma volait la personne la plus chère à mon cœur : Branwen. Avant de disparaître et de lacher ses autres morts-vivants à mes trousses, Bodhi m'a dit que si je continuais, je pourrais perdre beaucoup plus que je ne croyais. Je ne peux pas abandonner le Rhynn Lanthorn... Mais désormais, la vie et l'âme immortelle de quelqu'un que j'aime sont aussi en jeu !~
+@100002 = ~La bataille final contre Bodhi.
+
+Alors que je craignais depuis quelques temps que la vengeance finale de Bodhi serait de m'enlever à jamais Branwen, il semble que ce que disait le livre des légendes était vrai... L'idole d'Amaunator a non seulement ramené Branwen à la vie, mais a aussi chassé sa malédiction de vampire.~
+
+// Setup-MyMod.tra is also used for item descriptions, the NPC's soundset, and various character names. If you're going to write a more complex mod with quests and new items, look at Xan's code for various examples.
+
+// WeiDU prompts
+@-1000= "Le mod %TP2_FILE_NAME% contient"
+@-1001= "composants optionnels distincts.
+Pour gagner du temps, vous pouvez choisir ce que vous souhaitez faire d'eux
+au niveau general plutot que de repondre aux questions pour chacun.
+"
+@-1002= "Que faut-il faire de tous les composants qui NE sont PAS ENCORE installes ?
+Les [I]nstaller, les [S]auter, dem[A]nder pour chacun ? "
+@-1003= "Que faut-il faire de tous les composants qui sont DEJA installes ?
+Les [R]einstaller, les s[U]pprimer, les [S]auter, dem[A]nder pour chacun ? "
+
+@-1004= "S'IL VOUS PLAIT, envoyez par e-mail le fichier"
+@-1005= "a"
+
+@-1006= "Installer le composant ["
+@-1007= "] ?
+[R]einstaller, co[N]server, s[U]pprimer ou [Q]uitter ? "
+@-1008= "] ?
+[I]nstaller, [N]e pas installer ou [Q]uitter ? "
+
+@-1009= "Entrez une partie du nom du module : "
+
+@-1010= "Reinstallation du composant ["
+@-1011= "] "
+@-1012= "Reinstallation dans la langue"
+
+@-1013= "Suppression de l'ancienne installation de ["
+@-1014= "] au prealable..."
+@-1015= "SUPPRESSION REUSSIE DE L'ANCIEN"
+
+@-1016= "Installation en cours"
+@-1017= "ERREUR pendant l'installation de ["
+@-1018= "], retour a l'etat anterieur"
+@-1019= "INSTALLATION REUSSIE"
+@-1020= "Saute"
+@-1021= "Suppression de ["
+@-1022= "] (composant #"
+@-1023= ")"
+@-1024= "SUPPRESSION REUSSIE DE ["
+
+@-1025= "] ?
+[R]einstaller, co[N]server, s[U]pprimer, [Q]uitter ou choisir un parmi :"
+@-1026= "] ?
+[N]e pas installer, [Q]uitter ou choisir un parmi :"
+@-1027= " (installe actuellement)"
+
+@-1028= "Souhaitez-vous afficher les composants de ["
+@-1029= "] ?
+[Y]Oui, [N]on ? "
+
+@-1030= "] ?
+choisir un parmi :"
+@-1031= "] ?
+[R]einstaller, co[N]server, [Q]uitter ou choisir un parmi :"
+@-1032= "INSTALLATION ECHOUEE A CAUSE D'ERREURS"
+@-1033= "INSTALLATION AVEC DES ALERTES"
+@-1034= "Souhaitez-vous afficher les instructions (ReadMe) ? [Y]Oui [N]on"
+@-1035= "Dans la langue"
+
+@-1036= "Saute le GROUPE ["
+@-1037= "] pour cause d'absence des pre-requis."
+
+@-1038= "dem[A]nder pour chaque composant, tout [S]auter, ou choisir une selection pre-definie :"
+@-1039= "dem[A]nder pour chaque composant, [R]einstaller la configuration courante, tout s[U]pprimer, tout [S]auter, ou choisir une selection pre-definie :"
+
+@-1040= "
+Veuillez choisir la langue dans laquelle vous souhaitez jouer au jeu.
+Si par la suite vous desirez jouer au jeu dans une langue differente, il vous
+faudra editer le fichier weidu.conf et reinstaller vos mods.
+"
+@-1041= "Tcheque"
+@-1042= "Allemand"
+@-1043= "Anglais"
+@-1044= "Espagnol"
+@-1045= "Francais"
+@-1046= "Italien"
+@-1047= "Polonais"
+@-1048= "Portugais"
+@-1049= "Turc"
+@-1050= "Japonais"
+@-1051= "Coreen"
+@-1052= "Chinois simplifie"
+@-1053= "Russe"
+@-1054= "Ukrainien"
+
+@-1060= "
+Ce jeu est disponible en plusieurs langues mais WeiDU ne sait pas laquelle a ete choisie quand ce mod a ete installe.
+
+Veuillez indiquer quelle langue du jeu a ete utilisee quand vous avez installe ce mod. Votre choix servira jusqu'a ce que WeiDU s'arrete mais ne sera pas memorise.
+"
+@-1061= "
+Utilisation de"
+@-1062= " et "
+
+@-1063= "INSTALLATION ABANDONNEE"
+@-1064= "Abandon de l'installation de ["
+@-1065= "], retour a l'etat anterieur"
