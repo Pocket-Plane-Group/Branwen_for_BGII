@@ -1,5 +1,5 @@
 			Branwen NPC MOD for Baldur's Gate II
-				   Version 7
+				   Version 8
 			  A Pocket Plane Group Project
 			   http://www.pocketplane.net
 
@@ -181,6 +181,10 @@ WeiDU					http://www.weidu.org
 -------------------
 6. Version History
 -------------------
+
+Version 8
+- French version by by Shamou, JohnBob and jazira
+- fate spirit line in tp2 should be in chosen Language
 
 Version 7
 - Russian version by Jericho2
