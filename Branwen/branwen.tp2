@@ -12,7 +12,7 @@ BACKUP ~Branwen/Backup~
 
 AUTHOR ~Kulyok at http://forums.pocketplane.net~ // If the player gets an installation error, he'll know where to post his bug reports
 
-VERSION ~v7~  // This is not necessary, but recommended. A version number will be reflected in your Weidu.log. This way you will know which version a player with a bug report has installed. V4, v1alpha, v1.23 will work too.
+VERSION ~v8pre~  // This is not necessary, but recommended. A version number will be reflected in your Weidu.log. This way you will know which version a player with a bug report has installed. V4, v1alpha, v1.23 will work too.
 
 //you can put a readme call here. This will give the standard "Would you like to display the readme? [Y]es [N]o" question at the beginning of the install.
 README ~Branwen/Readme-Branwen.txt~
@@ -345,7 +345,8 @@ ACTION_IF GAME_IS ~eet~ BEGIN //only true if game is detected as Enhanced Editio
       override_ToB = "O#BRA25S" //Branwen ToB Override script
       dialog_ToB = "O#BRAN25" //Branwen ToB dialogue file
       cre_ToB = "o#bran25" //Branwen ToB CRE filename
-      string = "Bring me Branwen, the priestess of Tempus." //normally this should be reference to TRA file, but the mod is not traified
+      traFile = EVAL "Branwen/tra/%LANGUAGE%/fatesp.tra"
+      string = "@0" //from the TRA file specified via traFile
       stringPosDV = "Cernd" //Branwen will be appended right above Cernd
       clean_ToB_DV = "Branwen" //death variable of BG1 Branwen (see clean_ToB comment)
   END
