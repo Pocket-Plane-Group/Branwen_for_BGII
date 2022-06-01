@@ -320,9 +320,7 @@ Again, this code is commented out and will not be run/compiled/executed. */
 
 IF ~~ v1.1
 SAY @53 /* 'Twas you, wasn't it? <CHARNAME>, my dearest lover, you have saved me once again. Truly, 'twas Tempus' hand and mine own heart that brought me to you. */
-IF ~~ DO ~EraseJournalEntry(%The Final Battle with Bodhi.
-
-Bodhi appeared in an ambush shortly before I reached her haven, warning me that she was aware of my pursuit and stealing from me the one person that is dearest to my heart: Branwen.  Before she vanished and unleashed more of her undead creations upon me, Bodhi warned me that if I continue I will lose even more than I thought possible.  I cannot give up on the Rhynn Lanthorn... but now the life and immortal soul of the one I love is at stake, as well!%)~ + v1.1a
+IF ~~ DO ~EraseJournalEntry(@100001)~ + v1.1a
 END
 
 IF ~~ v1.1a
